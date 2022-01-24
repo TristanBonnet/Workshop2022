@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73493b7c0f3ecb743af8a26a1bae3fe7, type: 3}
+  m_Name: InputActionMapWrapperSpecialInteraction
+  m_EditorClassIdentifier: 
+  _actionMap:
+    m_Name: Action Map
+    m_Id: 3d91a875-8504-4db9-b9c0-368a822f54a9
+    m_Asset: {fileID: 0}
+    m_Actions:
+    - m_Name: UP
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 99baf8f4-0583-425b-bad8-63d76b316fab
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: RIGHT
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 0f7adbd3-51b7-4bb1-a57f-14bddf52bb8a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: DOWN
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 71851ee7-245f-44bd-96c4-c8c072111fba
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: AbilityImproverInteraction
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 6b5cb2c8-aa4e-4129-a1d3-c43f2ca6830b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: LEFT
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 2129f4aa-24f0-4e6e-8427-a66e03a00a43
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Bindings:
+    - m_Name: 
+      m_Id: 710bcc35-c3a1-4fb8-b140-ed575fcb0693
+      m_Path: <Gamepad>/dpad/up
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: UP
+      m_Flags: 0
+    - m_Name: 
+      m_Id: e0eae269-10b4-49a1-a416-630943a74005
+      m_Path: <Gamepad>/dpad/right
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: RIGHT
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 14026731-bdf3-489b-b22a-e444c2e40e65
+      m_Path: <Gamepad>/dpad/down
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: DOWN
+      m_Flags: 0
+    - m_Name: 
+      m_Id: e75fa483-ff79-45af-b615-eee3da531658
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: AbilityImproverInteraction
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 5510d555-fa4f-4a46-8b2f-aaf645db992c
+      m_Path: <Gamepad>/dpad/left
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: LEFT
+      m_Flags: 0
