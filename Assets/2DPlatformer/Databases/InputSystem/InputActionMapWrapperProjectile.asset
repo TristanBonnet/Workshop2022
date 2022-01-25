@@ -25,6 +25,14 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+    - m_Name: ThrowableAxis
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: c56b397a-d77c-4917-a6f5-e913b446caae
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
     m_Bindings:
     - m_Name: 
       m_Id: cdfdbf11-cbb5-4131-82da-14abceadd777
@@ -34,3 +42,35 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Throw
       m_Flags: 0
+    - m_Name: 
+      m_Id: d0ae72b8-37ae-486d-86cc-adc992df21a0
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: ThrowableAxis
+      m_Flags: 0
+    - m_Name: 1D Axis
+      m_Id: b84989ab-fc8a-419f-bd0b-435b60c4633e
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: ThrowableAxis
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 075dc029-9c39-4372-926d-84b86b8b8e4a
+      m_Path: <Gamepad>/rightStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: ThrowableAxis
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 3f43188e-31ab-439b-9391-853358e081b6
+      m_Path: <Gamepad>/rightStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: ThrowableAxis
+      m_Flags: 8
