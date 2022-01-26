@@ -8,6 +8,8 @@ public class Trap : MonoBehaviour
 {
     [SerializeField] DamageDealer _damageDealer = null;
     [SerializeField] bool _isActive = false;
+    [SerializeField] Animator _animator = null;
+    [SerializeField] Material UnactiveMaterial = null;
 
 
 
@@ -28,18 +30,34 @@ public class Trap : MonoBehaviour
         Debug.Log(other);
         // Check if player is enter 
         Damageable damageable = other.GetComponentInParent<Damageable>();
+        ThrowableNewTest _projectile = other.GetComponentInParent<ThrowableNewTest>();
 
         if (damageable != null && _isActive)
         {
             // Give damages
             _damageDealer.GiveDamage(damageable);
             SetTrapActive(false);
+           Renderer[] _list =  GetComponentsInChildren<Renderer>();
+
+            for (int i = 0; i < _list.Length; i++)
+            {
+                _list[i].material = UnactiveMaterial; 
+            }
         }
 
-        else
+        
+        else if (_projectile != null && _isActive)
         {
-            Debug.Log("Don't find player");
+            SetTrapActive(false);
+            Renderer[] _list = GetComponentsInChildren<Renderer>();
+            for (int i = 0; i < _list.Length; i++)
+            {
+                _list[i].material = UnactiveMaterial;
+            }
+
+            Destroy(_projectile.gameObject);
         }
+        
     }
 
 
