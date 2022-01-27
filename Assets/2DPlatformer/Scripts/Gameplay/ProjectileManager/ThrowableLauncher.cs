@@ -54,14 +54,26 @@ public class ThrowableLauncher : MonoBehaviour
    {
         if (_refTransform.transform.rotation.eulerAngles.y > 90)
         {
-            _launchForceAxisSpeed = -_launchForceAxisSpeed;
+            if (_launchForceAxisSpeed > 0)
+            {
+                _launchForceAxisSpeed = -_launchForceAxisSpeed;
+            }
 
         }
+
+        else
+        {
+
+            if (_launchForceAxisSpeed < 0)
+            {
+                _launchForceAxisSpeed = -_launchForceAxisSpeed;
+            }
+
+        }
+
         float newLaunchForce = Mathf.Clamp(LaunchForce + (_sepcialInput.HorizontalAxis * Time.deltaTime * _launchForceAxisSpeed),_minLaunchForce, _maxLaunchForce );
-
-        
-
-        
+         
+               
 
         LaunchForce = newLaunchForce;
 

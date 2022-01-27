@@ -90,9 +90,14 @@ public class SpecialInput : MonoBehaviour
     private void _inputActiveProjectileLauncher(InputAction.CallbackContext obj)
     {
         Debug.Log("ACTIVE LAUNCHER");
+
+        if (_itemManager.CheckProjectileCountIsSuperiorThan0())
+        {
+            _throwableLauncher.gameObject.SetActive(true);
+            _throwableLauncher.SetActive(true);
+        }
+
         
-        _throwableLauncher.gameObject.SetActive(true);
-        _throwableLauncher.SetActive(true);
 
     }
 
@@ -101,33 +106,41 @@ public class SpecialInput : MonoBehaviour
 
     private void _inputActionReloadPerformed(InputAction.CallbackContext obj)
     {
-        if (_pebbleState != null &&_pebbleState.OnPebbles)
+        if (_throwableLauncher.isActiveAndEnabled)
         {
-            if (_pebbleState.PebbleStock != null)
-            {
-                if (_pebbleState.PebbleStock.InfinityStaack)
-                {
-                    _itemManager.AddProjectile(1);
-                }
-
-                else
-                {
-                    if (_pebbleState.PebbleStock.CurrentStack > 0)
-                    {
-                        _itemManager.AddProjectile(1);
-                        _pebbleState.PebbleStock.RemoveStack(1);
-                    }
-
-
-                }
-            }
-
-           
+            _throwableLauncher.SetActive(false);
+            _throwableLauncher.gameObject.SetActive(false);
         }
 
         else
         {
-            
+            if (_pebbleState != null && _pebbleState.OnPebbles)
+            {
+                if (_pebbleState.PebbleStock != null)
+                {
+                    if (_pebbleState.PebbleStock.InfinityStaack)
+                    {
+                        _itemManager.AddProjectile(1);
+                    }
+
+                    else
+                    {
+                        if (_pebbleState.PebbleStock.CurrentStack > 0)
+                        {
+                            _itemManager.AddProjectile(1);
+                            _pebbleState.PebbleStock.RemoveStack(1);
+                        }
+
+
+                    }
+                }
+
+
+            }
+
+
+
+
         }
 
 
