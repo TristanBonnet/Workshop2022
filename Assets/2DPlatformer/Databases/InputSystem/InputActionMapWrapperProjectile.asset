@@ -41,6 +41,22 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+    - m_Name: Add
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: c2f31718-0ed5-4b3f-a373-e76c7a913d9d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: Launcher
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 6ac646bc-75e8-4514-b18d-32ab43edf926
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
     m_Bindings:
     - m_Name: 
       m_Id: d0ae72b8-37ae-486d-86cc-adc992df21a0
@@ -108,9 +124,25 @@ MonoBehaviour:
       m_Flags: 8
     - m_Name: 
       m_Id: 51ce7dce-0b94-4fd5-8c38-3680c9a28373
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: Press
+      m_Path: <Gamepad>/rightShoulder
+      m_Interactions: Press(behavior=1)
       m_Processors: 
       m_Groups: 
       m_Action: Throw
+      m_Flags: 0
+    - m_Name: 
+      m_Id: a5ba750b-5d09-41db-bf94-1ad771c6f556
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Add
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 0ed0fd11-4eec-40c6-93b5-4629372de037
+      m_Path: <Gamepad>/rightShoulder
+      m_Interactions: Press
+      m_Processors: 
+      m_Groups: 
+      m_Action: Launcher
       m_Flags: 0

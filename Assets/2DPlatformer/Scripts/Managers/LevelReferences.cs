@@ -39,6 +39,9 @@ namespace GSGD2
 		[SerializeField]
 		private LootManager _lootManager = null;
 
+		[SerializeField]
+		private ItemManager _itemManager = null;
+
 		public PlayerReferences PlayerReferences => _playerReferences;
 		public CubeController Player => _player;
 		public PlayerStart PlayerStart => _playerStart;
@@ -47,6 +50,8 @@ namespace GSGD2
 		public MouseToWorld2D MouseToWorld2D => _mouseToWorld2D;
 		public UIManager UIManager => _uiManager;
 		public LootManager LootManager => _lootManager;
+
+		public ItemManager ItemManager => _itemManager;
 
 		protected override void OnDestroy()
 		{

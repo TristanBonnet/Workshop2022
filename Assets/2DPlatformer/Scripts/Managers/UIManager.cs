@@ -22,6 +22,8 @@ namespace GSGD2.UI
 		[SerializeField] TextMeshProUGUI _gold = null;
 		[SerializeField] List<TextMeshProUGUI> _listPrice  = null;
 		[SerializeField] List<GameObject> _listUpgrade = null;
+		[SerializeField] TextMeshProUGUI _currentPebbleText = null;
+		[SerializeField] TextMeshProUGUI _maxPebbleText = null;
 
 		public void ShowPlayerHUD(bool isActive)
 		{
@@ -55,6 +57,20 @@ namespace GSGD2.UI
 			_listUpgrade[indexList].SetActive(visible);
 
 
+        }
+
+		public void UpdatePebbleText(int index, string text)
+        {
+            if (index == 0)
+            {
+				_currentPebbleText.SetText(text);
+            }
+
+            else if (index == 1)
+            {
+				_maxPebbleText.SetText(text);
+			}
+            
         }
 	}
 }

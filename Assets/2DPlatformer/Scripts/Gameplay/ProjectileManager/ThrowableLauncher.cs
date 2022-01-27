@@ -13,6 +13,7 @@ public class ThrowableLauncher : MonoBehaviour
     [SerializeField] float _minLaunchForce = 5;
     [SerializeField] float _maxLaunchForce = 20;
     [SerializeField] LayerMask _layers;
+    [SerializeField] Transform _refTransform = null;
     
 
     [SerializeField] float _minXRange = -15f;
@@ -22,7 +23,9 @@ public class ThrowableLauncher : MonoBehaviour
     [SerializeField] GameObject _pointRef = null;
     
     [SerializeField] int _numberOfPoints = 40;
-     GameObject[] _listpointsRef = null;
+    private GameObject[] _listpointsRef = null;
+    
+     private bool _active = false;
 
 
 
@@ -49,7 +52,17 @@ public class ThrowableLauncher : MonoBehaviour
 
    private void Update()
    {
+        if (_refTransform.transform.rotation.eulerAngles.y > 90)
+        {
+            _launchForceAxisSpeed = -_launchForceAxisSpeed;
+
+        }
         float newLaunchForce = Mathf.Clamp(LaunchForce + (_sepcialInput.HorizontalAxis * Time.deltaTime * _launchForceAxisSpeed),_minLaunchForce, _maxLaunchForce );
+
+        
+
+        
+
         LaunchForce = newLaunchForce;
 
         
@@ -87,6 +100,7 @@ public class ThrowableLauncher : MonoBehaviour
 
             }
 
+           
         }
 
     }    
@@ -110,5 +124,14 @@ public class ThrowableLauncher : MonoBehaviour
         return currentPosition;
     }
 
+    public void SetActive(bool active)
+    {
+        for (int i = 0; i < _listpointsRef.Length; i++)
+        {
+            _listpointsRef[i].SetActive(active);
+        }
+        _active = active;
+        
 
+    }
 }
