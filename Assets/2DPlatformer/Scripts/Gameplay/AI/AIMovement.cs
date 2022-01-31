@@ -16,6 +16,9 @@ public class AIMovement : MonoBehaviour
     [SerializeField] Transform _range = null;
     [SerializeField] Transform _rangePointRight = null;
     [SerializeField] Transform _rangePointLeft = null;
+    [SerializeField] AIPerception _aIPerception = null;
+    [SerializeField] float _delayBetweenFire = 1f;
+    private float _currentTimeBewteenFire = 0;
     private float _timeEarSomething = 2f;
     private float _currentTimeEarSomething = 0;
     private PathPoint _currentPathPoint = null;
@@ -79,6 +82,22 @@ public class AIMovement : MonoBehaviour
         Debug.Log(_currentPathPoint.name);
         if (_startActive)
         {
+            if (_aIPerception.CheckSeePlayer())
+            {
+
+                ChangeLastState(_currentState);
+                ChangeState(State.Attacking);
+
+            }
+
+            else
+            {
+                ChangeLastState(_currentState);
+                ChangeState(_lastState);
+
+            }
+
+
             if (!isStatic)
             {
                  
@@ -131,6 +150,9 @@ public class AIMovement : MonoBehaviour
 
                     case State.Attacking:
                         {
+
+
+
 
 
                            
@@ -425,6 +447,15 @@ public class AIMovement : MonoBehaviour
         }
 
         return false;
+
+    }
+
+
+    private void Fire()
+    {
+
+
+
 
     }
 }
