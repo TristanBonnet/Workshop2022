@@ -635,8 +635,8 @@ namespace GSGD2.Player
 				break;
 				case State.Bumping:
 				{
-					_currentDurationToDisableControlDuringBump = 0f;
-					_rigidbody.velocity = Vector3.zero;
+					  _currentDurationToDisableControlDuringBump = 0f;
+					  _rigidbody.velocity = Vector3.zero;
 					if (_resetJumpCountWhenBumping == true)
 					{
 						ResetJumpCount(_allowedJumpCountWhenBumping);
@@ -940,8 +940,8 @@ namespace GSGD2.Player
 						bool canChangeState = CanChangeState(State.WallGrab);
 						if (canChangeState == true)
 						{
-							ChangeState(State.WallGrab);
-						}
+                            //ChangeState(State.WallGrab);
+                        }
 					}
 				}
 			}
@@ -1046,11 +1046,11 @@ namespace GSGD2.Player
 			{
 				case State.Grounded:
 				{
-					ApplyMovementOrDecelerationForce(isGrounded);
-					NullifyMovementAgainstAWallInFrontOf();
-					// If grounded, project velocity by the floor normal to handle slopes
-					velocity = Vector3.ProjectOnPlane(velocity, _characterCollision.GroundNormal);
-				}
+                        ApplyMovementOrDecelerationForce(isGrounded);
+                        NullifyMovementAgainstAWallInFrontOf();
+                        // If grounded, project velocity by the floor normal to handle slopes
+                        velocity = Vector3.ProjectOnPlane(velocity, _characterCollision.GroundNormal);
+                    }
 				break;
 				case State.Falling:
 				{
@@ -1097,9 +1097,11 @@ namespace GSGD2.Player
 					break;
 				case State.WallGrab:
 				{
-					// Nullify velocity when wall grabbing
-					velocity = Vector3.zero;
-				}
+						// Nullify velocity when wall grabbing
+						//velocity = Vector3.zero;
+						//velocity = new Vector3(0, 0, 0);
+						//ApplyGravity(ref velocity);
+					}
 				break;
 				case State.WallJump:
 				{
@@ -1256,29 +1258,33 @@ namespace GSGD2.Player
 
 		private void LookToDirection()
 		{
-			float currentMovementDirection;
-			if (Mathf.Abs(_inputMovement) > Mathf.Epsilon) // lazy deadzone
-			{
-				currentMovementDirection = _inputMovement;
-			}
-			else
-			{
-				currentMovementDirection = _lastMovementDirection;
-			}
-			int movementDirection = (currentMovementDirection > 0 ? 1 : -1);
+            if (CurrentState != CubeController.State.WallGrab)
+            {
+				float currentMovementDirection;
+				if (Mathf.Abs(_inputMovement) > Mathf.Epsilon) // lazy deadzone
+				{
+					currentMovementDirection = _inputMovement;
+				}
+				else
+				{
+					currentMovementDirection = _lastMovementDirection;
+				}
+				int movementDirection = (currentMovementDirection > 0 ? 1 : -1);
 
-			if (_lastMovementDirection != movementDirection)
-			{
-				_currentTurnTime = 0;
-				_lastMovementDirection = movementDirection;
+				if (_lastMovementDirection != movementDirection)
+				{
+					_currentTurnTime = 0;
+					_lastMovementDirection = movementDirection;
+				}
+
+				_currentTurnTime = Mathf.Clamp(_currentTurnTime + _turnSpeed * Time.deltaTime, 0, 1f);
+
+				// ideas to improve perfs : do not set the rotation if the _currentTurnTime is at 1f since last frame
+				Quaternion rotation = Quaternion.LookRotation(Vector3.forward * movementDirection);
+				transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _uturnCurve.Evaluate(_currentTurnTime));
 			}
-
-			_currentTurnTime = Mathf.Clamp(_currentTurnTime + _turnSpeed * Time.deltaTime, 0, 1f);
-
-			// ideas to improve perfs : do not set the rotation if the _currentTurnTime is at 1f since last frame
-			Quaternion rotation = Quaternion.LookRotation(Vector3.forward * movementDirection);
-			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, _uturnCurve.Evaluate(_currentTurnTime));
-		}
+            
+        }
 
 		#region Editor
 		private void OnValidate()

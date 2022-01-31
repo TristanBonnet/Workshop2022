@@ -51,7 +51,7 @@ namespace GSGD2.Player
 
         private void _cubeController_StateChanged(CubeController cubeController, CubeController.CubeControllerEventArgs args)
         {
-            Debug.Log("SUPER CUBE ANIMATOR STATE CHANGED");
+            //Debug.Log("SUPER CUBE ANIMATOR STATE CHANGED");
 
 
             switch (args.currentState)
@@ -161,7 +161,7 @@ namespace GSGD2.Player
 
 
 
-            Debug.Log(args.currentState);
+            //Debug.Log(args.currentState);
         }
 
         private void Update()

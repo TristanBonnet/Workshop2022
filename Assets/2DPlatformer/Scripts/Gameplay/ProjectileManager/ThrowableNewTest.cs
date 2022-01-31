@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ThrowableNewTest : MonoBehaviour
 {
-
+    [SerializeField] private Noise _noise = null;
+    [SerializeField] private LayerMask _layer;
    public Rigidbody _rigibody = null;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class ThrowableNewTest : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+
         Movement();
 
 
@@ -30,4 +33,22 @@ public class ThrowableNewTest : MonoBehaviour
 
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.layer);
+
+        if (other.gameObject.layer == 4)
+        {
+            Instantiate(_noise, transform.position, new Quaternion(0, 0, 0, 0));
+            Debug.Log("MAKE NOISE");
+            Destroy(gameObject);
+        }
+
+        else
+        {
+            Debug.Log("BAD LAYER");
+        }
+    }
+
 }

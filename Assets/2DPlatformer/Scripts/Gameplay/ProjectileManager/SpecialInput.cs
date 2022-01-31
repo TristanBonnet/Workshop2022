@@ -14,27 +14,36 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] string _horizontalAxisToCheck = "Hor";
     [SerializeField] string _inputAddPebble = "Add";
     [SerializeField] string _inputActiveLauncher = "Launcher";
+    [SerializeField] string _leftVerticalAxisToCheck = "LeftVer";
 
     private InputAction _inputThrowAction = null;
     private InputAction _inputHorizontalAxis = null;
     private InputAction _inputVerticalAxis = null;
     private InputAction _inputAddAction = null;
     private InputAction _inputActiveLauncherAction = null;
+    private InputAction _inputLeftVertcialAxis = null;
 
     [SerializeField] ProjectileManager _projectileManager = null;
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
     [SerializeField] ItemManager _itemManager = null;
     [SerializeField] CheckPebbleState _pebbleState = null;
+
+    private PlayerCheckClimbWall _playerCheckClimbWall = null;
    
  
 
     public float HorizontalAxis => _inputHorizontalAxis.ReadValue<float>();
     public float VerticalAxis => _inputVerticalAxis.ReadValue<float>();
 
+    public float LeftVerticalAxis => _inputLeftVertcialAxis.ReadValue<float>();
+
     private void Start()
     {
         _itemManager =  LevelReferences.Instance.ItemManager;
         _pebbleState = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckPebbleState>();
+        _playerCheckClimbWall = LevelReferences.Instance.PlayerReferences.GetComponentInParent<PlayerCheckClimbWall>();
+
+        
 
     }
 
@@ -42,6 +51,7 @@ public class SpecialInput : MonoBehaviour
     {
          _inputActionMap.TryFindAction(_vercticalAxisToCheck, out _inputVerticalAxis, true);
          _inputActionMap.TryFindAction(_horizontalAxisToCheck, out _inputHorizontalAxis, true);
+         _inputActionMap.TryFindAction(_leftVerticalAxisToCheck, out _inputLeftVertcialAxis, true);
 
         if (_inputActionMap.TryFindAction(_inputToCheck, out _inputThrowAction) == true)
         {
@@ -90,14 +100,9 @@ public class SpecialInput : MonoBehaviour
     private void _inputActiveProjectileLauncher(InputAction.CallbackContext obj)
     {
         Debug.Log("ACTIVE LAUNCHER");
-
-        if (_itemManager.CheckProjectileCountIsSuperiorThan0())
-        {
-            _throwableLauncher.gameObject.SetActive(true);
-            _throwableLauncher.SetActive(true);
-        }
-
         
+        _throwableLauncher.gameObject.SetActive(true);
+        _throwableLauncher.SetActive(true);
 
     }
 
@@ -106,16 +111,35 @@ public class SpecialInput : MonoBehaviour
 
     private void _inputActionReloadPerformed(InputAction.CallbackContext obj)
     {
-        if (_throwableLauncher.isActiveAndEnabled)
+        if (_pebbleState != null &&_pebbleState.OnPebbles)
         {
-            _throwableLauncher.SetActive(false);
-            _throwableLauncher.gameObject.SetActive(false);
+            if (_pebbleState.PebbleStock != null)
+            {
+                if (_pebbleState.PebbleStock.InfinityStaack)
+                {
+                    _itemManager.AddProjectile(1);
+                }
+
+                else
+                {
+                    if (_pebbleState.PebbleStock.CurrentStack > 0)
+                    {
+                        _itemManager.AddProjectile(1);
+                        _pebbleState.PebbleStock.RemoveStack(1);
+                    }
+
+
+                }
+            }
+
+           
         }
 
-        else
+        else if (_pebbleState != null && _pebbleState.OnPebbles)
         {
-            if (_pebbleState != null && _pebbleState.OnPebbles)
-            {
+            
+<<<<<<< HEAD
+            
                 if (_pebbleState.PebbleStock != null)
                 {
                     if (_pebbleState.PebbleStock.InfinityStaack)
@@ -134,13 +158,17 @@ public class SpecialInput : MonoBehaviour
 
                     }
                 }
+                           
 
+        }
 
-            }
+        else if (_playerCheckClimbWall.CheckIfPlayerCanWallRun())
+        {
 
+            _playerCheckClimbWall.SetClimb(true);
 
-
-
+=======
+>>>>>>> parent of bceba05 (Add ClimbWall)
         }
 
 

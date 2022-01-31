@@ -57,6 +57,14 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+    - m_Name: LeftVer
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: b95b7718-a4ea-43ad-88a2-5ac2a6ace257
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
     m_Bindings:
     - m_Name: 
       m_Id: d0ae72b8-37ae-486d-86cc-adc992df21a0
@@ -146,3 +154,35 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Launcher
       m_Flags: 0
+    - m_Name: 
+      m_Id: c495fd49-799b-4bf5-83c6-3849435d6055
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: LeftVer
+      m_Flags: 0
+    - m_Name: 1D Axis
+      m_Id: d48849e1-38a0-46e4-9ce6-2163f97e337a
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: LeftVer
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: ca7af11a-2ebb-48bc-9b5c-45e0da2639fc
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: LeftVer
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: b32e0593-35ac-453c-b6a0-d125ff0f657e
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: LeftVer
+      m_Flags: 8

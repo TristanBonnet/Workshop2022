@@ -11,26 +11,52 @@ public class PlayerCheckClimbWall : MonoBehaviour
     [SerializeField] LayerMask _layerMask;
     [SerializeField] Transform _startTransform = null;
     [SerializeField] float _distance = 5;
+    [SerializeField] SpecialInput _specialInput = null;
+    private bool _climb = false;
+    [SerializeField] float _climbSpeed = 15f;
+    
 
 
-
-
-
-    private void Update()
+    private void Start()
     {
-        Debug.Log(CheckIfPlayerCanWallRun());
+        if (LevelReferences.Instance.PlayerReferences.TryGetCubeController(out CubeController cubeController))
+        {
+            _cubeController = cubeController;
+        } 
+    }
 
+
+    private void FixedUpdate()
+    {
+
+        if (_cubeController.CurrentState == CubeController.State.WallGrab)
+        {
+            
+
+            _cubeController.Rigidbody.velocity  = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
+            if (!CheckIfPlayerCanWallRun())
+            {
+
+                CheckCurrentState();
+
+            }
+
+
+        }
+
+        Debug.DrawLine(_startTransform.position,_startTransform.forward * _distance, Color.white);
+        //Debug.Log(CheckIfPlayerCanWallRun());
 
     }
 
 
 
-    private bool CheckIfPlayerCanWallRun()
+    public bool CheckIfPlayerCanWallRun()
     {
-        Debug.DrawLine(_startTransform.position, _startTransform.position + _startTransform.forward * _distance, Color.white);
+         Debug.DrawLine(_startTransform.position, _startTransform.position + _startTransform.forward * _distance, Color.white);
 
 
-        if (Physics.Raycast(_startTransform.position, _startTransform.position +_startTransform.forward, out RaycastHit hit, _distance))
+        if (Physics.Raycast(_startTransform.position,_startTransform.forward, out RaycastHit hit, _distance))
         {
            ClimbWall _climbWall =  hit.collider.GetComponentInParent<ClimbWall>();
 
@@ -41,7 +67,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
             }
 
-            if (_climbWall != null)
+            if (_climbWall == null)
             {
 
                 return false;
@@ -52,10 +78,38 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
         else
         {
-            Debug.Log("DONT TOUCH");
+            return false;
+        }
+
+        return false;
+
+    }
+
+    public void SetClimb(bool climb)
+    {
+        if (climb)
+        {
+            _cubeController.ChangeState(CubeController.State.WallGrab);
         }
 
 
-        return false;
+        else
+        {
+            _cubeController.ChangeState(CubeController.State.Falling);
+        }
+    }
+
+    public void CheckCurrentState()
+    {
+        if (_cubeController.CurrentState == CubeController.State.WallGrab)
+        {
+
+            SetClimb(false);
+
+        }
+
+
+
+
     }
 }
