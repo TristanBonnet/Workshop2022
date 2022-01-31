@@ -95,6 +95,11 @@ public class AIMovement : MonoBehaviour
                 ChangeLastState(_currentState);
                 ChangeState(_lastState);
 
+                if (_currentTimeBewteenFire != 0)
+                {
+                    _currentTimeBewteenFire = 0;
+                }
+
             }
 
 
@@ -150,9 +155,16 @@ public class AIMovement : MonoBehaviour
 
                     case State.Attacking:
                         {
+                            if (_currentTimeBewteenFire <  _delayBetweenFire)
+                            {
+                                _currentTimeBewteenFire += Time.deltaTime;
+                            }
 
-
-
+                            else
+                            {
+                                Fire();
+                                _currentTimeBewteenFire = 0;
+                            }
 
 
                            
