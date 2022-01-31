@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GSGD2;
+using GSGD2.Player;
 
 public class AIMovement : MonoBehaviour
 {
@@ -18,6 +20,10 @@ public class AIMovement : MonoBehaviour
     [SerializeField] Transform _rangePointLeft = null;
     [SerializeField] AIPerception _aIPerception = null;
     [SerializeField] float _delayBetweenFire = 1f;
+    [SerializeField] Transform _startPointProjectile = null;
+    [SerializeField] AIProjectile _aiProjectile = null;
+    private bool _seePlayer = false;
+    private PlayerController _player = null;
     private float _currentTimeBewteenFire = 0;
     private float _timeEarSomething = 2f;
     private float _currentTimeEarSomething = 0;
@@ -52,6 +58,13 @@ public class AIMovement : MonoBehaviour
 
     private void Start()
     {
+        if (LevelReferences.Instance.PlayerReferences.TryGetPlayerController(out PlayerController player))
+        {
+
+            _player = player;
+
+        }
+        
         if (!isStatic)
         {
             _range.DetachChildren();
@@ -79,26 +92,35 @@ public class AIMovement : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_currentPathPoint.name);
+        //Debug.Log(_currentState);
         if (_startActive)
         {
             if (_aIPerception.CheckSeePlayer())
             {
-
-                ChangeLastState(_currentState);
-                ChangeState(State.Attacking);
+                if (!_seePlayer)
+                {
+                    ChangeLastState(_currentState);
+                    ChangeState(State.Attacking);
+                    _seePlayer = true;
+                }
+               
 
             }
 
             else
             {
-                ChangeLastState(_currentState);
-                ChangeState(_lastState);
-
-                if (_currentTimeBewteenFire != 0)
+                if (_seePlayer)
                 {
-                    _currentTimeBewteenFire = 0;
+                    ChangeLastState(_currentState);
+                    ChangeState(State.Patroling);
+                    _seePlayer = false;
+
+                    if (_currentTimeBewteenFire != 0)
+                    {
+                        _currentTimeBewteenFire = 0;
+                    }
                 }
+                
 
             }
 
@@ -122,6 +144,7 @@ public class AIMovement : MonoBehaviour
 
                                 else
                                 {
+                                    Debug.Log("CHANGE STATE");
                                     ChangeLastState(_currentState);
                                     ChangeState(AIMovement.State.Waiting);
                                 }
@@ -155,6 +178,7 @@ public class AIMovement : MonoBehaviour
 
                     case State.Attacking:
                         {
+                            _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
                             if (_currentTimeBewteenFire <  _delayBetweenFire)
                             {
                                 _currentTimeBewteenFire += Time.deltaTime;
@@ -176,7 +200,7 @@ public class AIMovement : MonoBehaviour
                         {
                             if (_currentWaitingTime < _currentPathPoint.WaitingTime)
                             {
-
+                                
                                 _currentWaitingTime += Time.deltaTime;
 
 
@@ -184,7 +208,7 @@ public class AIMovement : MonoBehaviour
 
                             else
                             {
-
+                                
                                 ResetCurrentWaitingTime();
                                 ChangeLastState(_currentState);
                                 GetNextPathPoint();
@@ -236,6 +260,7 @@ public class AIMovement : MonoBehaviour
 
                                         else
                                         {
+                                            
                                             _noiseLocation = Vector3.zero;
                                             LookPathPoint();
                                             ChangeState(State.Patroling);
@@ -357,7 +382,7 @@ public class AIMovement : MonoBehaviour
 
     public void ChangeState(State newState)
     {
-
+        
         _currentState = newState;
 
 
@@ -466,7 +491,7 @@ public class AIMovement : MonoBehaviour
     private void Fire()
     {
 
-
+        Instantiate(_aiProjectile, _startPointProjectile.transform.position, _startPointProjectile.transform.rotation);
 
 
     }
