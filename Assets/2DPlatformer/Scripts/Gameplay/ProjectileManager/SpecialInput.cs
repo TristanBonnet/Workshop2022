@@ -138,7 +138,6 @@ public class SpecialInput : MonoBehaviour
         else if (_pebbleState != null && _pebbleState.OnPebbles)
         {
             
-<<<<<<< HEAD
             
                 if (_pebbleState.PebbleStock != null)
                 {
@@ -167,8 +166,7 @@ public class SpecialInput : MonoBehaviour
 
             _playerCheckClimbWall.SetClimb(true);
 
-=======
->>>>>>> parent of bceba05 (Add ClimbWall)
+
         }
 
 
