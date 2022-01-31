@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using GSGD2;
 using GSGD2.Player;
+using GSGD2.Gameplay;
 
 public class AIProjectile : MonoBehaviour
 {
     [SerializeField] float _projectileSpeed = 2f;
-
+    [SerializeField] 
 
 
     private void Update()
@@ -24,6 +25,8 @@ public class AIProjectile : MonoBehaviour
 
         if (other != null)
         {
+            
+
 
         }
 
