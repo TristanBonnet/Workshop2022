@@ -14,8 +14,9 @@ public class PlayerCheckClimbWall : MonoBehaviour
     [SerializeField] SpecialInput _specialInput = null;
     private bool _climb = false;
     [SerializeField] float _climbSpeed = 15f;
-    
+    [SerializeField] private bool _isActive = false;
 
+    public bool IsActive => _isActive;
 
     private void Start()
     {
@@ -28,21 +29,24 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        if (_cubeController.CurrentState == CubeController.State.WallGrab)
-        {
-            
-
-            _cubeController.Rigidbody.velocity  = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
-            if (!CheckIfPlayerCanWallRun())
+        
+        
+            if (_cubeController.CurrentState == CubeController.State.WallGrab)
             {
 
-                CheckCurrentState();
+
+                _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
+                if (!CheckIfPlayerCanWallRun())
+                {
+
+                    CheckCurrentState();
+
+                }
+
 
             }
-
-
-        }
+        
+       
 
         Debug.DrawLine(_startTransform.position,_startTransform.forward * _distance, Color.white);
         //Debug.Log(CheckIfPlayerCanWallRun());
@@ -110,6 +114,13 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
 
 
+
+    }
+
+    public void SetActive(bool isActive)
+    {
+
+        _isActive = isActive;
 
     }
 }

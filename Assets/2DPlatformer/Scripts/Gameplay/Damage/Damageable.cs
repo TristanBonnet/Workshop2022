@@ -198,6 +198,14 @@ namespace GSGD2.Gameplay
 			return _gameObjectDestroyer != null && _gameObjectDestroyer.WillDestroy == true;
 		}
 
+		public  void IncrementMaxHealth(int health)
+        {
+
+
+			maxHealth += health;
+
+        }
+
 		#region Callbacks
 		protected virtual void OnDamageTaken(Damageable sender, DamageableArgs args)
 		{

@@ -29,6 +29,7 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] CheckPebbleState _pebbleState = null;
 
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
+    private CheckDestructible _checkDestructible = null;
    
  
 
@@ -42,6 +43,7 @@ public class SpecialInput : MonoBehaviour
         _itemManager =  LevelReferences.Instance.ItemManager;
         _pebbleState = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckPebbleState>();
         _playerCheckClimbWall = LevelReferences.Instance.PlayerReferences.GetComponentInParent<PlayerCheckClimbWall>();
+        _checkDestructible = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckDestructible>();
 
         
 
@@ -163,8 +165,20 @@ public class SpecialInput : MonoBehaviour
 
         else if (_playerCheckClimbWall.CheckIfPlayerCanWallRun())
         {
+            if (_playerCheckClimbWall.IsActive)
+            {
+                _playerCheckClimbWall.SetClimb(true);
+            }
 
-            _playerCheckClimbWall.SetClimb(true);
+            
+
+
+        }
+
+        else if (_checkDestructible.CurrentDestructibleWall != null)
+        {
+
+            Destroy(_checkDestructible.CurrentDestructibleWall.gameObject);
 
 
         }

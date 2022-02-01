@@ -46,6 +46,9 @@ namespace GSGD2.Player
 		[SerializeField]
 		private Collider _collider = null; // TODO AL : move this to PlayerReferences
 
+		[SerializeField]
+		private PlayerCheckClimbWall _playerCheckWallClimb = null;
+
 		[Header("Movement")]
 		[SerializeField]
 		private float _maxVelocity = 50f;
@@ -187,6 +190,8 @@ namespace GSGD2.Player
 
 		[SerializeField]
 		private bool _debugMode = false;
+
+		
 
 		// Runtime fields
 		private PlayerController _playerController = null;
@@ -460,22 +465,29 @@ namespace GSGD2.Player
 
 		private void PlayerController_WallGrabPerformed(PlayerController sender, InputAction.CallbackContext obj)
 		{
-			switch (_currentState)
+			if (_playerCheckWallClimb.IsActive)
 			{
-				case State.Grounded:
-				case State.Falling:
-				case State.Bumping:
-				case State.Jumping:
-				case State.WallJump:
-				case State.Dashing:
-					_willPerformWallGrab = true;
-					break;
-				case State.StartJump:
-				case State.EndJump:
-				case State.WallGrab:
-				case State.DamageTaken:
-				default:
-					break;
+				Debug.Log("INPUT");
+
+				switch (_currentState)
+				{
+					case State.Grounded:
+					case State.Falling:
+					case State.Bumping:
+					case State.Jumping:
+					case State.WallJump:
+					case State.Dashing:
+
+						_willPerformWallGrab = true;
+
+						break;
+					case State.StartJump:
+					case State.EndJump:
+					case State.WallGrab:
+					case State.DamageTaken:
+					default:
+						break;
+				}
 			}
 		}
 		private void PlayerController_WallJumpPerformed(PlayerController sender, InputAction.CallbackContext obj)

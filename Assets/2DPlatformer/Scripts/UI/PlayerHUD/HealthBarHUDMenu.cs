@@ -55,7 +55,7 @@ namespace GSGD2.UI
 			UpdateHealth(args.currentHealth, args.maxHealth);
 		}
 
-		private void UpdateHealth(float health, float maxHealth)
+		public void UpdateHealth(float health, float maxHealth)
 		{
 			float perc = Mathf.Clamp01(health / maxHealth);
 			_healthbarForeground.fillAmount = perc;
