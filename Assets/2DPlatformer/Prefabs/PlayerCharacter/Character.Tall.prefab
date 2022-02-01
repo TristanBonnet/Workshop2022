@@ -690,6 +690,49 @@ Transform:
   m_Father: {fileID: 45943501467049746}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2069778182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069778183}
+  - component: {fileID: 2069778184}
+  m_Layer: 0
+  m_Name: Offset
+  m_TagString: Offset
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2069778183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069778182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 45943501467049746}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2069778184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069778182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ba49a6e61c6984e908f672086ec56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &28224071920206819
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +848,7 @@ GameObject:
   - component: {fileID: 1513154650}
   - component: {fileID: 1513154651}
   - component: {fileID: 1513154652}
+  - component: {fileID: 1529464484}
   m_Layer: 0
   m_Name: Character.Tall
   m_TagString: Untagged
@@ -841,6 +885,7 @@ Transform:
   - {fileID: 392571969}
   - {fileID: 1927037276}
   - {fileID: 845800984}
+  - {fileID: 2069778183}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1001,6 +1046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerReferences: {fileID: 658029998098805078}
   _collider: {fileID: 1241346952}
+  _playerCheckWallClimb: {fileID: 1513154631}
   _maxVelocity: 50
   _groundMoveSpeed: 9
   _groundFriction: 11.62
@@ -1026,7 +1072,7 @@ MonoBehaviour:
   _resetJumpCountWhenBumping: 1
   _allowedJumpCountWhenBumping: 1
   _dash:
-    enabled: 0
+    enabled: 1
     _maximumAllowedForces: 1
     cubeController: {fileID: 0}
     displacementEstimationUpdater: {fileID: 0}
@@ -1421,6 +1467,8 @@ MonoBehaviour:
   _distance: 2
   _specialInput: {fileID: 0}
   _climbSpeed: 5
+  _isActive: 1
+  _offSet: {fileID: 2069778183}
 --- !u!114 &1513154649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,6 +1522,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868610940a083814a8f9426360be0e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1529464484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45943501467049751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdaae8f4d25f004f840ad2ad510ff11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startTransform: {fileID: 845800984}
+  _distance: 1
+  _isActive: 0
 --- !u!1 &45943501639459713
 GameObject:
   m_ObjectHideFlags: 0
