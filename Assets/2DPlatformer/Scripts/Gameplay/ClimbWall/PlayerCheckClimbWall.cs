@@ -15,14 +15,23 @@ public class PlayerCheckClimbWall : MonoBehaviour
     private bool _climb = false;
     [SerializeField] float _climbSpeed = 15f;
     [SerializeField] private bool _isActive = false;
+    private ClimbWall _currentClimbWall = null;
+    [SerializeField] private Transform _offSet = null;
+    
+    
 
     public bool IsActive => _isActive;
+    public Transform Offset => _offSet;
 
     private void Start()
     {
+        
+
+
         if (LevelReferences.Instance.PlayerReferences.TryGetCubeController(out CubeController cubeController))
         {
             _cubeController = cubeController;
+
         } 
     }
 
@@ -30,18 +39,59 @@ public class PlayerCheckClimbWall : MonoBehaviour
     private void FixedUpdate()
     {
         
-        
+            
             if (_cubeController.CurrentState == CubeController.State.WallGrab)
             {
-
-
-                _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
-                if (!CheckIfPlayerCanWallRun())
+            Debug.Log(_specialInput.LeftVerticalAxis);
+                if (_specialInput.LeftVerticalAxis > 0)
                 {
+                   
+                      if (_currentClimbWall.UpTransform.position.y > _offSet.position.y )
+                      {
+                         
+                          Debug.Log("WALL GRAB");
+                         _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
 
-                    CheckCurrentState();
+                      }
 
+
+                     else
+                     {
+
+                         //_cubeController.transform.position = new Vector3(_cubeController.transform.position.x, _currentClimbWall.UpTransform.position.y, _cubeController.transform.position.z);
+                          _cubeController.Rigidbody.velocity = Vector3.zero;
+
+                     }
+
+                
                 }
+
+               else
+               {
+                         if (_currentClimbWall.BottomTransform.position.y < _offSet.position.y)
+                         {
+                             _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
+                         }
+
+
+                         else
+                         {
+
+                                   //_cubeController.transform.position = new Vector3(_cubeController.transform.position.x, _currentClimbWall.BottomTransform.position.y, _cubeController.transform.position.z);
+                                   _cubeController.Rigidbody.velocity = Vector3.zero;
+                         }
+
+                          
+                }
+
+                //_cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
+
+                //if (!CheckIfPlayerCanWallRun())
+                //{
+                    
+                //    CheckCurrentState();
+
+                //}
 
 
             }
@@ -67,6 +117,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
             if (_climbWall != null)
             {
 
+                _currentClimbWall = _climbWall;
                 return true;
 
             }
@@ -74,6 +125,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
             if (_climbWall == null)
             {
 
+                _currentClimbWall = null;
                 return false;
 
             }
@@ -82,6 +134,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
         else
         {
+            _currentClimbWall = null;
             return false;
         }
 
