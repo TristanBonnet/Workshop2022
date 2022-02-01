@@ -101,6 +101,7 @@ public class AIMovement : MonoBehaviour
                 {
                     ChangeLastState(_currentState);
                     ChangeState(State.Attacking);
+                    Fire();
                     _seePlayer = true;
                 }
                
