@@ -83,7 +83,7 @@ MonoBehaviour:
   _noise: {fileID: 5803549080235972097, guid: 2a6867595245fd6458cb661376272c80, type: 3}
   _layer:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 1040
   _rigibody: {fileID: 2867602940331159431}
 --- !u!135 &2867602940331159435
 SphereCollider:
