@@ -30,6 +30,13 @@ public class AIProjectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+       Collider[] _collidersList =  Physics.OverlapSphere(transform.position, 0.2f, _layer);
+
+        if (_collidersList.Length > 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -47,6 +54,7 @@ public class AIProjectile : MonoBehaviour
 
         else if (other.gameObject.layer == _layer)
         {
+            Debug.Log("GROUND");
             Destroy(gameObject);
         }
        
