@@ -8,6 +8,7 @@ using GSGD2.Gameplay;
 public class AIProjectile : MonoBehaviour
 {
     [SerializeField] float _projectileSpeed = 2f;
+    [SerializeField] LayerMask _layer;
     private float _timeBeforeDestruction = 0;
    
 
@@ -36,6 +37,7 @@ public class AIProjectile : MonoBehaviour
     {
         PlayerController _player = other.GetComponentInParent<PlayerController>();
 
+
         if (_player != null)
         {
 
@@ -43,6 +45,11 @@ public class AIProjectile : MonoBehaviour
 
         }
 
+        else if (other.gameObject.layer == _layer)
+        {
+            Destroy(gameObject);
+        }
+       
 
 
     }

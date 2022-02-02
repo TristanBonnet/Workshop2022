@@ -490,8 +490,8 @@ public class AIMovement : MonoBehaviour
 
     private void LookPathPoint()
     {
-        Vector3 targetLocation = new Vector3(transform.position.x, transform.position.y, _currentPathPoint.transform.position.z);
-        Quaternion newRotation = Quaternion.LookRotation(targetLocation, Vector3.up);
+        Vector3 targetLocation = new Vector3(transform.position.x, transform.position.y,_currentPathPoint.transform.position.z);
+        Quaternion newRotation = Quaternion.LookRotation(targetLocation - transform.position, Vector3.up);
         transform.rotation = newRotation;
        //Quaternion.Euler(transform.rotation.x, transform.rotation.y, newRotation.z);
 

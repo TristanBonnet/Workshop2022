@@ -27,6 +27,7 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
     [SerializeField] ItemManager _itemManager = null;
     [SerializeField] CheckPebbleState _pebbleState = null;
+    [SerializeField] InteractableNPC _interactableNPC = null;
 
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
     private CheckDestructible _checkDestructible = null;

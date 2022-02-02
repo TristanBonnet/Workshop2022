@@ -123,6 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileSpeed: 50
+  _layer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &9176214796765227656
 GameObject:
   m_ObjectHideFlags: 0
