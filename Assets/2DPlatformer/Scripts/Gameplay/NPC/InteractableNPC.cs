@@ -59,17 +59,5 @@ public class InteractableNPC : MonoBehaviour
 
     }
 
-    private void SetNewSentence()
-    {
-
-
-
-    }
-
-    private void StartDialogue()
-    {
-
-
-
-    }
+   
 }

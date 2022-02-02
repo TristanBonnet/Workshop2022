@@ -90,7 +90,7 @@ public class ThrowableLauncher : MonoBehaviour
                 _listpointsRef[i].gameObject.SetActive(true);
             }
 
-            if (Physics.OverlapSphere(_listpointsRef[i].transform.position, 0f, _layers).Length > 0)
+            if (Physics.OverlapSphere(_listpointsRef[i].transform.position, 0.5f, _layers).Length > 0)
             {
                 Collider[] _list = Physics.OverlapSphere(_listpointsRef[i].transform.position, 0f, _layers);
 
