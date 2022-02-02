@@ -336,6 +336,7 @@ public class AIMovement : MonoBehaviour
                         break;
                 }
 
+                
 
 
 
@@ -343,6 +344,80 @@ public class AIMovement : MonoBehaviour
 
 
 
+
+            }
+
+            else
+            {
+                switch (_currentState)
+                {
+                    case State.Patroling:
+                        break;
+                    case State.Attacking:
+                        {
+                            _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
+                            if (_currentTimeBewteenFire < _delayBetweenFire)
+                            {
+                                _currentTimeBewteenFire += Time.deltaTime;
+                            }
+
+                            else
+                            {
+                                Fire();
+                                _currentTimeBewteenFire = 0;
+                            }
+
+
+
+                        }
+                        break;
+                    case State.Waiting:
+                        break;
+                    case State.Eard:
+                        {
+
+                            if (_currentTimeBeforeMoveToNoiseLocation < _timeBeforeMoveToNoiseLocation)
+                            {
+
+                                _currentTimeBeforeMoveToNoiseLocation += Time.deltaTime;
+
+
+                            }
+
+                            else
+                            {
+                                if (transform.rotation != LookNoise())
+                                {
+                                    LookNoise();
+                                }
+
+                                if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                {
+                                    _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                }
+
+                                else
+                                {
+
+                                    _noiseLocation = Vector3.zero;
+                                    //LookPathPoint();
+                                    ChangeState(State.Patroling);
+                                    _currentTimeBeforeMoveToNoiseLocation = 0;
+                                    _currentTimeWaitingAtNoiseLocation = 0;
+
+
+                                }
+
+
+                            }
+
+
+
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
 
         }
@@ -415,8 +490,8 @@ public class AIMovement : MonoBehaviour
 
     private void LookPathPoint()
     {
-
-        Quaternion newRotation = Quaternion.LookRotation(_currentPathPoint.transform.position - transform.position, Vector3.up);
+        Vector3 targetLocation = new Vector3(transform.position.x, transform.position.y, _currentPathPoint.transform.position.z);
+        Quaternion newRotation = Quaternion.LookRotation(targetLocation, Vector3.up);
         transform.rotation = newRotation;
        //Quaternion.Euler(transform.rotation.x, transform.rotation.y, newRotation.z);
 
