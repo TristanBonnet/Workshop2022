@@ -4,8 +4,11 @@ using UnityEngine;
 using TMPro;
 using GSGD2;
 using GSGD2.Player;
+using GSGD2.Gameplay;
 
-public class InteractableNPC : MonoBehaviour
+public class InteractableNPC : MonoBehaviour, ICommandSender
+
+
 {
     [SerializeField] Sprite _NPCPicture = null;
     
@@ -16,13 +19,24 @@ public class InteractableNPC : MonoBehaviour
 
     private int _currentSentenceIndex = 0;
 
+    public List<string> Sentences => _sentences;
+    public int CurrentSentenceIndex => _currentSentenceIndex;
 
+    public Sprite NPCSprite => _NPCPicture;
 
+    [SerializeField] private bool _giveUpgrade = false;
+    [SerializeField] PickupCommand _pickUpCommand = null;
+
+    GameObject ICommandSender.GetGameObject() => gameObject;
+
+    public bool GiveUpgrade => _giveUpgrade;
+
+    public PickupCommand PickupCommand => _pickUpCommand;
 
     private void Start()
     {
-            
 
+        _pickUpCommand.SetDestroyOnApply(false);
 
 
     }
@@ -38,7 +52,7 @@ public class InteractableNPC : MonoBehaviour
         if (playerController != null && npcDetector != null)
         {
             npcDetector.SetCurrentInteractableNPC(this);
-
+            
 
         }
     }
@@ -55,6 +69,14 @@ public class InteractableNPC : MonoBehaviour
             npcDetector.SetInDialogue(false);
 
         }
+
+
+    }
+
+    public void SetGiveUpgrade(bool giveUpgrate)
+    {
+
+        _giveUpgrade = giveUpgrate;
 
 
     }

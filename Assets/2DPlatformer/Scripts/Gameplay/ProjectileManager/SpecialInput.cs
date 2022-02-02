@@ -15,6 +15,7 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] string _inputAddPebble = "Add";
     [SerializeField] string _inputActiveLauncher = "Launcher";
     [SerializeField] string _leftVerticalAxisToCheck = "LeftVer";
+    [SerializeField] string _inputSkipDialogue = "skip";
 
     private InputAction _inputThrowAction = null;
     private InputAction _inputHorizontalAxis = null;
@@ -22,6 +23,7 @@ public class SpecialInput : MonoBehaviour
     private InputAction _inputAddAction = null;
     private InputAction _inputActiveLauncherAction = null;
     private InputAction _inputLeftVertcialAxis = null;
+    private InputAction _inputSkipDialogueAction = null;
 
     [SerializeField] ProjectileManager _projectileManager = null;
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
@@ -32,6 +34,7 @@ public class SpecialInput : MonoBehaviour
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
     private CheckDestructible _checkDestructible = null;
     private NPCDetector _npcDetector = null;
+    
 
 
     public float HorizontalAxis => _inputHorizontalAxis.ReadValue<float>();
@@ -83,6 +86,14 @@ public class SpecialInput : MonoBehaviour
 
         }
 
+         
+        if (_inputActionMap.TryFindAction(_inputSkipDialogue, out _inputSkipDialogueAction, true) == true)
+        {
+
+            _inputSkipDialogueAction.performed -= inputSkipDialogue;
+            _inputSkipDialogueAction.performed += inputSkipDialogue;
+
+        }
     }
 
     private void _inputThrowActionPerformed(InputAction.CallbackContext obj)
@@ -103,10 +114,23 @@ public class SpecialInput : MonoBehaviour
 
     private void _inputActiveProjectileLauncher(InputAction.CallbackContext obj)
     {
-        Debug.Log("ACTIVE LAUNCHER");
+        
         
         _throwableLauncher.gameObject.SetActive(true);
         _throwableLauncher.SetActive(true);
+
+    }
+
+
+    private void inputSkipDialogue(InputAction.CallbackContext obj)
+    {
+        if (_npcDetector.CurrentInteractableNPC != null && _npcDetector.InDialogue)
+        {
+
+            _npcDetector.GetNextSentence();
+
+        }
+
 
     }
 
@@ -187,8 +211,9 @@ public class SpecialInput : MonoBehaviour
 
         else if (_npcDetector != null && _npcDetector.CurrentInteractableNPC != null)
         {
-            Debug.Log("SET DIALOGUE");
 
+
+              
             _npcDetector.SetInDialogue(true);
 
             
@@ -196,7 +221,7 @@ public class SpecialInput : MonoBehaviour
 
         }
 
-
+       
     }
 
     private void OnDisable()
@@ -209,6 +234,9 @@ public class SpecialInput : MonoBehaviour
 
         _inputActiveLauncherAction.performed -= _inputActiveProjectileLauncher;
         _inputActiveLauncherAction.Disable();
+
+        _inputSkipDialogueAction.performed -= inputSkipDialogue;
+        _inputSkipDialogueAction.Disable();
     }
 
     private void Update()

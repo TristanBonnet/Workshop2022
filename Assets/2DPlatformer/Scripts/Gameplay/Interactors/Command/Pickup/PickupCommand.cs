@@ -28,5 +28,13 @@
 		/// </summary>
 		/// <param name="from"></param>
 		protected abstract bool ApplyPickup(ICommandSender from);
+
+
+		public void SetDestroyOnApply(bool destroy)
+        {
+
+			_destroyPickupOnApply = destroy;
+
+        }
 	}
 }
