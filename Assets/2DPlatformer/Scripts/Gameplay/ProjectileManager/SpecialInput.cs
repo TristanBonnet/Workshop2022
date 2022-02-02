@@ -27,12 +27,12 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
     [SerializeField] ItemManager _itemManager = null;
     [SerializeField] CheckPebbleState _pebbleState = null;
-    [SerializeField] InteractableNPC _interactableNPC = null;
+    
 
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
     private CheckDestructible _checkDestructible = null;
-   
- 
+    private NPCDetector _npcDetector = null;
+
 
     public float HorizontalAxis => _inputHorizontalAxis.ReadValue<float>();
     public float VerticalAxis => _inputVerticalAxis.ReadValue<float>();
@@ -45,8 +45,9 @@ public class SpecialInput : MonoBehaviour
         _pebbleState = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckPebbleState>();
         _playerCheckClimbWall = LevelReferences.Instance.PlayerReferences.GetComponentInParent<PlayerCheckClimbWall>();
         _checkDestructible = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckDestructible>();
+        _npcDetector = LevelReferences.Instance.PlayerReferences.GetComponentInParent<NPCDetector>();
 
-        
+
 
     }
 
@@ -181,6 +182,17 @@ public class SpecialInput : MonoBehaviour
 
             Destroy(_checkDestructible.CurrentDestructibleWall.gameObject);
 
+
+        }
+
+        else if (_npcDetector != null && _npcDetector.CurrentInteractableNPC != null)
+        {
+            Debug.Log("SET DIALOGUE");
+
+            _npcDetector.SetInDialogue(true);
+
+            
+            
 
         }
 

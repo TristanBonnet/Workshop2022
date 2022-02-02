@@ -19,6 +19,12 @@ public class ThrowableNewTest : MonoBehaviour
     {
 
         Movement();
+        Collider[] _collidersList = Physics.OverlapSphere(transform.position, 0.2f, _layer);
+
+        if (_collidersList.Length > 0)
+        {
+            Destroy(gameObject);
+        }
 
 
     }

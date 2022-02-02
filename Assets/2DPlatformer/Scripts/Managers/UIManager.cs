@@ -24,6 +24,9 @@ namespace GSGD2.UI
 		[SerializeField] List<GameObject> _listUpgrade = null;
 		[SerializeField] TextMeshProUGUI _currentPebbleText = null;
 		[SerializeField] TextMeshProUGUI _maxPebbleText = null;
+		[SerializeField] DialogueUI _dialogueUI = null;
+
+		public DialogueUI DialogueUI => _dialogueUI;
 
 		public void ShowPlayerHUD(bool isActive)
 		{
