@@ -86,7 +86,7 @@ public class SpecialInput : MonoBehaviour
 
         }
 
-         
+
         if (_inputActionMap.TryFindAction(_inputSkipDialogue, out _inputSkipDialogueAction, true) == true)
         {
 

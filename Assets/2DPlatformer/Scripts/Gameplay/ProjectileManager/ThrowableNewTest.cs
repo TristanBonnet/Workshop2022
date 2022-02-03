@@ -6,7 +6,10 @@ public class ThrowableNewTest : MonoBehaviour
 {
     [SerializeField] private Noise _noise = null;
     [SerializeField] private LayerMask _layer;
-   public Rigidbody _rigibody = null;
+    public Rigidbody _rigibody = null;
+    private float _gravityY = -9.81f;
+    private Vector3 _gravity;
+
   
     // Start is called before the first frame update
     void Start()
@@ -17,6 +20,8 @@ public class ThrowableNewTest : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+
+        _rigibody.AddForce(_gravity);
 
         Movement();
         Collider[] _collidersList = Physics.OverlapSphere(transform.position, 0.2f, _layer);
@@ -36,7 +41,8 @@ public class ThrowableNewTest : MonoBehaviour
         Vector3 direction = _rigibody.velocity;
         float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
+        
+        
 
     }
 
@@ -55,6 +61,15 @@ public class ThrowableNewTest : MonoBehaviour
         {
             Debug.Log("BAD LAYER");
         }
+    }
+
+    public void SetNewGravity(float multiplier)
+    {
+
+        _gravity = new Vector3(0, _gravityY * multiplier, 0);
+
+
+
     }
 
 }

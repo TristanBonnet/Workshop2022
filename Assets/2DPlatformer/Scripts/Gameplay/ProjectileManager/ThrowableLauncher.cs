@@ -14,6 +14,7 @@ public class ThrowableLauncher : MonoBehaviour
     [SerializeField] float _maxLaunchForce = 20;
     [SerializeField] LayerMask _layers;
     [SerializeField] Transform _refTransform = null;
+    [SerializeField] float _speedMultiplier = 8.5f;
     
 
     [SerializeField] float _minXRange = -15f;
@@ -26,6 +27,7 @@ public class ThrowableLauncher : MonoBehaviour
     private GameObject[] _listpointsRef = null;
     
      private bool _active = false;
+    private float _lastZRotation = 0;
 
 
 
@@ -54,14 +56,31 @@ public class ThrowableLauncher : MonoBehaviour
    {
         if (_refTransform.transform.rotation.eulerAngles.y > 90)
         {
-            _launchForceAxisSpeed = -_launchForceAxisSpeed;
+            if (_lastZRotation < 90)
+            {
+                _launchForceAxisSpeed = -_launchForceAxisSpeed;
+            }
+            
 
         }
-        float newLaunchForce = Mathf.Clamp(LaunchForce + (_sepcialInput.HorizontalAxis * Time.deltaTime * _launchForceAxisSpeed),_minLaunchForce, _maxLaunchForce );
 
-        
+        else
+        {
+            if (_lastZRotation > 90)
+            {
 
-        
+                _launchForceAxisSpeed = -_launchForceAxisSpeed;
+
+            }
+
+
+
+        }
+        float newLaunchForce = Mathf.Clamp(LaunchForce + (_sepcialInput.HorizontalAxis * Time.deltaTime * _launchForceAxisSpeed * _speedMultiplier),_minLaunchForce, _maxLaunchForce);
+
+
+        _lastZRotation = _refTransform.transform.rotation.eulerAngles.y; 
+
 
         LaunchForce = newLaunchForce;
 
@@ -109,17 +128,17 @@ public class ThrowableLauncher : MonoBehaviour
     public void Fire()
     {
        ThrowableNewTest projectile =   Instantiate(_projectile, _startTransform.position, transform.rotation);
+        projectile.SetNewGravity(_speedMultiplier);
+        projectile._rigibody.velocity = projectile.transform.forward * LaunchForce;
 
-        projectile._rigibody.velocity =   projectile.transform.forward * LaunchForce;
-
-
+        
     }
 
      Vector3 PointPosition(float t)
     {
 
-        Vector3 currentPosition = (Vector3)_startTransform.position + (transform.forward *  LaunchForce * t) + Physics.gravity /2 * (t * t);
-
+        //Vector3 currentPosition = (Vector3)_startTransform.position + (transform.forward *  LaunchForce * t) + Physics.gravity /2 * (t * t);
+        Vector3 currentPosition = (Vector3)_startTransform.position + (transform.forward * LaunchForce * t) + (Physics.gravity * _speedMultiplier) / 2 * (t * t);
 
         return currentPosition;
     }

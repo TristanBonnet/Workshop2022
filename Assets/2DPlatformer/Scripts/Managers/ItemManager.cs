@@ -68,4 +68,15 @@ public class ItemManager : MonoBehaviour
 
 
     }
+
+
+    public void AddMaxProjectileCount(int numberToAdd)
+    {
+
+        _maxProjectileNumber += numberToAdd;
+
+        LevelReferences.Instance.UIManager.UpdatePebbleText(1, _maxProjectileNumber.ToString());
+
+
+    }
 }
