@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,7 +12,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject _storyLayer = null;
     [SerializeField] GameObject _commandLayer = null;
     [SerializeField] GameObject _firstScreen = null;
-     
+    [SerializeField] GameObject _playeButton = null;
+    [SerializeField] private EventSystem _eventSystem = null;
+    private bool _activeTimer = false;
+    private float _currentTime = 0;
 
    public  enum Layer
    {
@@ -25,7 +30,22 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        
+        if (_activeTimer)
+        {
+            if (_currentTime < 0.1)
+            {
+                _currentTime += Time.deltaTime;
+            }
+
+            else
+            {
+                _eventSystem.SetSelectedGameObject(_playeButton);
+                _activeTimer = false;
+
+            }
+        }
+
+
     }
     public void SwitchLayer(int layer)
     {
@@ -39,6 +59,8 @@ public class MainMenu : MonoBehaviour
             _commandLayer.SetActive(false);
             _firstScreen.SetActive(false);
             _currentLayer = Layer.MainLayer;
+            _activeTimer = true;
+            
         }
 
         else if (layer == 1)
@@ -145,4 +167,12 @@ public class MainMenu : MonoBehaviour
 
 
     }
+
+    public void QuitGame()
+    {
+
+        Application.Quit();
+       
+    }
+    
 }
