@@ -20,6 +20,11 @@ namespace GSGD2.Gameplay
                 if (!checkDestructible.IsActive)
                 {
                     checkDestructible.SetActive(true);
+
+                    if (!LevelReferences.Instance.CapacityMenu.SecondAbilityButton.isActiveAndEnabled)
+                    {
+                        LevelReferences.Instance.CapacityMenu.SetElementsVisibility(1, true);
+                    }
                     return true;
 
                 }

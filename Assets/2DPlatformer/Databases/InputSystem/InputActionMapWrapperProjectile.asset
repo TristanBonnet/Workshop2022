@@ -73,6 +73,22 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+    - m_Name: Select
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 1d0ac104-556d-49f0-a03a-82956416622a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: B
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 9c0211eb-6580-41b5-be8d-37c691e33d85
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
     m_Bindings:
     - m_Name: 
       m_Id: d0ae72b8-37ae-486d-86cc-adc992df21a0
@@ -201,4 +217,20 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Skip
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fda10161-bf2b-4800-94bf-7f2ea4fd9302
+      m_Path: <Gamepad>/select
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Select
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 5acb264c-0c60-4044-abe0-5fb72aa547cb
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: B
       m_Flags: 0

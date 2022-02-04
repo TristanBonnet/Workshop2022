@@ -19,6 +19,9 @@ public class Pause : MonoBehaviour
     [SerializeField] GameObject _pauseUI = null;
     [SerializeField] EventSystem _eventSystem = null;
     [SerializeField] Button _focusedButton = null;
+    [SerializeField] private CapacityMenu _capacityMenu = null;
+    [SerializeField] private GameObject _commandMenu = null;
+    [SerializeField] private GameObject _buttonObject = null;
     private float _maxTimeDelay = 0.1f;
     private float currentTimeDelay = 0f;
     private bool activeDelay = false;
@@ -27,7 +30,13 @@ public class Pause : MonoBehaviour
     private bool _isPaused = false;
 
 
+    public bool IsPaused => _isPaused;
+
+    public GameObject CommandMenu => _commandMenu;
+
+
     [SerializeField] string _inputToCheck = "Pause";
+
 
     private void OnEnable()
     {
@@ -51,19 +60,29 @@ public class Pause : MonoBehaviour
     private void PauseAbility(InputAction.CallbackContext obj)
     {
 
-        if (_isPaused == true)
+        if (!_capacityMenu.isActiveAndEnabled)
         {
-            SetPauseActive(false);
-            
+            if (!_isPaused == true)
+            {
+                SetPauseActive(true);
+                SetSelectedButton(_focusedButton);
+                SetPauseUIActive(true);
+            }
+
+
+            else
+            {
+                SetPauseActive(false);
+                SetSelectedButton(null);
+                SetPauseUIActive(false);
+
+            }
+
+
+
         }
 
-
-        else
-        {
-            SetPauseActive(true);
-        }
-
-
+        
     }
 
 
@@ -73,7 +92,7 @@ public class Pause : MonoBehaviour
         if (active)
         {
             _isPaused = true;
-            EventSystem.current.SetSelectedGameObject(_focusedButton.gameObject);
+            
             if (LevelReferences.Instance.PlayerReferences.TryGetCubeController(out CubeController cube))
             {
 
@@ -81,18 +100,18 @@ public class Pause : MonoBehaviour
 
             }  
             Time.timeScale = 0;
-            _pauseUI.SetActive(true);
+            
         }
 
         else
         {
             _isPaused = false;
-            EventSystem.current.SetSelectedGameObject(null);
+            
            
             Time.timeScale = 1;
 
             activeDelay = true;
-            _pauseUI.SetActive(false);
+            
 
         }
 
@@ -131,5 +150,59 @@ public class Pause : MonoBehaviour
         }
 
        
+    }
+
+    public void SetSelectedButton(Button buttonToSelect)
+    {
+
+        if (_isPaused)
+        {
+            EventSystem.current.SetSelectedGameObject(buttonToSelect.gameObject);
+        }
+
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+
+    }
+
+    public void SetPauseUIActive(bool active)
+    {
+        _pauseUI.SetActive(active);
+
+    }
+
+    public void SetCommandMenuActive(bool active)
+    {
+
+        if (active)
+        {
+            _commandMenu.SetActive(true);
+            _buttonObject.SetActive(true);
+        }
+
+        else
+        {
+            _commandMenu.SetActive(false);
+            _buttonObject.SetActive(false);
+        }
+
+    }
+
+    public void SetTimeScale(bool active)
+    {
+        if (active)
+        {
+
+            Time.timeScale = 1;
+
+        }
+
+        else
+        {
+            Time.timeScale = 0;
+        }
+
     }
 }

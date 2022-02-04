@@ -39,6 +39,7 @@ public class MainMenu : MonoBehaviour
 
             else
             {
+                Debug.Log("FOCUS BUTTON");
                 _eventSystem.SetSelectedGameObject(_playeButton);
                 _activeTimer = false;
 
@@ -58,6 +59,7 @@ public class MainMenu : MonoBehaviour
             _storyLayer.SetActive(false);
             _commandLayer.SetActive(false);
             _firstScreen.SetActive(false);
+             
             _currentLayer = Layer.MainLayer;
             _activeTimer = true;
             

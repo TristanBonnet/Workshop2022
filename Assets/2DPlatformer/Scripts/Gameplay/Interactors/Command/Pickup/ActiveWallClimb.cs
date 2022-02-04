@@ -23,12 +23,20 @@ namespace GSGD2.Gameplay
                 {
 
                     checkClimbWall.SetActive(true);
+
+                    if (!LevelReferences.Instance.CapacityMenu.ThirdAbilityButton.isActiveAndEnabled)
+                    {
+
+                        LevelReferences.Instance.CapacityMenu.SetElementsVisibility(2, true);
+
+                    }
                     return true;
 
                 }
 
                 else
                 {
+                    
                     return false;
                 }
 

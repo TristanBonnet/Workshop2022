@@ -16,6 +16,8 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] string _inputActiveLauncher = "Launcher";
     [SerializeField] string _leftVerticalAxisToCheck = "LeftVer";
     [SerializeField] string _inputSkipDialogue = "skip";
+    [SerializeField] string _inputSelect = "Select";
+    [SerializeField] string _inputB = "B";
 
     private InputAction _inputThrowAction = null;
     private InputAction _inputHorizontalAxis = null;
@@ -24,12 +26,18 @@ public class SpecialInput : MonoBehaviour
     private InputAction _inputActiveLauncherAction = null;
     private InputAction _inputLeftVertcialAxis = null;
     private InputAction _inputSkipDialogueAction = null;
+    private InputAction _inputSelectAction = null;
+    private InputAction _inputBAction = null;
 
     [SerializeField] ProjectileManager _projectileManager = null;
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
     [SerializeField] ItemManager _itemManager = null;
     [SerializeField] CheckPebbleState _pebbleState = null;
+    [SerializeField] Pause _pause = null;
+    [SerializeField] CapacityMenu _capicity = null;
+    [SerializeField] GameObject _pauseUI = null;
     
+     
 
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
     private CheckDestructible _checkDestructible = null;
@@ -93,6 +101,20 @@ public class SpecialInput : MonoBehaviour
             _inputSkipDialogueAction.performed -= inputSkipDialogue;
             _inputSkipDialogueAction.performed += inputSkipDialogue;
 
+        }
+
+
+        if (_inputActionMap.TryFindAction(_inputSelect, out _inputSelectAction, true) == true)
+        {
+
+            _inputSelectAction.performed -= inputSelectActionPerformed;
+            _inputSelectAction.performed += inputSelectActionPerformed;
+        }
+
+        if (_inputActionMap.TryFindAction(_inputB, out _inputBAction, true) == true)
+        {
+            _inputBAction.performed -= _inputBPerformed;
+            _inputBAction.performed += _inputBPerformed;
         }
     }
 
@@ -224,6 +246,58 @@ public class SpecialInput : MonoBehaviour
        
     }
 
+    private void inputSelectActionPerformed(InputAction.CallbackContext obj)
+    {
+        if (!_pauseUI.gameObject.activeSelf)
+        {
+            if (!_pause.IsPaused)
+            {
+                _pause.SetPauseActive(true);
+                _capicity.gameObject.SetActive(true);
+
+                for (int i = 0; i < _capicity.ListButton.Count; i++)
+                {
+                    if (_capicity.ListButton[i].isActiveAndEnabled)
+                    {
+                        _pause.SetSelectedButton(_capicity.ListButton[i]);
+
+                        break;
+                    }
+                }
+                
+               
+
+            }
+
+            else
+            {
+                _pause.SetPauseActive(false);
+                _pause.SetSelectedButton(null);
+                _capicity.CapacityPicture.gameObject.SetActive(false);
+                _capicity.gameObject.SetActive(false);
+            }
+
+
+        }
+        
+
+
+    }
+
+    private void _inputBPerformed(InputAction.CallbackContext obj)
+    {
+
+        if (_pause.CommandMenu.gameObject.activeSelf)
+        {
+            _pause.CommandMenu.gameObject.SetActive(false);
+        }
+            
+
+        
+
+
+    }
+
     private void OnDisable()
     {
         _inputThrowAction.performed -= _inputThrowActionPerformed;
@@ -237,6 +311,12 @@ public class SpecialInput : MonoBehaviour
 
         _inputSkipDialogueAction.performed -= inputSkipDialogue;
         _inputSkipDialogueAction.Disable();
+
+        _inputSelectAction.performed -= inputSelectActionPerformed;
+        _inputSelectAction.Disable();
+
+        _inputBAction.performed -= _inputBPerformed;
+        _inputBAction.performed += _inputBPerformed;
     }
 
     private void Update()

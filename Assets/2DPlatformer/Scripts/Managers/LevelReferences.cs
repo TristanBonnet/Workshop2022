@@ -42,6 +42,9 @@ namespace GSGD2
 		[SerializeField]
 		private ItemManager _itemManager = null;
 
+		[SerializeField]
+		private CapacityMenu _capacityMenu = null;
+
 		public PlayerReferences PlayerReferences => _playerReferences;
 		public CubeController Player => _player;
 		public PlayerStart PlayerStart => _playerStart;
@@ -52,6 +55,8 @@ namespace GSGD2
 		public LootManager LootManager => _lootManager;
 
 		public ItemManager ItemManager => _itemManager;
+
+		public CapacityMenu CapacityMenu => _capacityMenu;
 
 		protected override void OnDestroy()
 		{

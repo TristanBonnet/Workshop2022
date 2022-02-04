@@ -5,6 +5,7 @@
 	using UnityEngine;
 	using UnityEngine.InputSystem.Switch;
 
+
 	/// <summary>
 	/// Type of <see cref="PickupCommand"/> that can modify player abilities in runtime. In can enable or disable Jump and Dash as well as add or remove on allowed force.
 	/// </summary>
@@ -48,6 +49,12 @@
 					else if (_modifier == Modifier.AddOneAllowedForce || _modifier == Modifier.RemoveOneAllowedForce)
 					{
 						player.AddMaximumAllowedForceToJump(_modifier == Modifier.AddOneAllowedForce ? 1 : -1);
+
+                        if (!LevelReferences.Instance.CapacityMenu.FirstAbilityButton.isActiveAndEnabled)
+                        {
+							LevelReferences.Instance.CapacityMenu.SetElementsVisibility(0, true);
+						}
+						
 					}
 					break;
 				case Ability.Dash:
