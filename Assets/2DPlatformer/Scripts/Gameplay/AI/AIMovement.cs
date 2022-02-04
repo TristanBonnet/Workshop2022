@@ -38,6 +38,7 @@ public class AIMovement : MonoBehaviour
     private float _currentTimeWaitingAtNoiseLocation = 0;
     private float AIRange = 0;
     private Vector3 startPosition;
+    private bool _isDead = false;
     
 
 
@@ -92,185 +93,65 @@ public class AIMovement : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(_currentState);
-        if (_startActive)
+
+        if (!_isDead)
         {
-            if (_aIPerception.CheckSeePlayer())
+            //Debug.Log(_currentState);
+            if (_startActive)
             {
-                if (!_seePlayer)
+                if (_aIPerception.CheckSeePlayer())
                 {
-                    ChangeLastState(_currentState);
-                    ChangeState(State.Attacking);
-                    Fire();
-                    _seePlayer = true;
-                }
-               
-
-            }
-
-            else
-            {
-                if (_seePlayer)
-                {
-                    ChangeLastState(_currentState);
-                    ChangeState(State.Patroling);
-                    _seePlayer = false;
-
-                    if (_currentTimeBewteenFire != 0)
+                    if (!_seePlayer)
                     {
-                        _currentTimeBewteenFire = 0;
+                        ChangeLastState(_currentState);
+                        ChangeState(State.Attacking);
+                        Fire();
+                        _seePlayer = true;
                     }
+
+
                 }
-                
 
-            }
-
-
-            if (!isStatic)
-            {
-                 
-                switch (_currentState)
+                else
                 {
-                    case State.Patroling:
+                    if (_seePlayer)
+                    {
+                        ChangeLastState(_currentState);
+                        ChangeState(State.Patroling);
+                        _seePlayer = false;
+
+                        if (_currentTimeBewteenFire != 0)
                         {
-                            float distanceDestination = Vector3.Distance(transform.position, _currentPathPoint.transform.position);
-                            if (CheckPlayerInRange())
-                            {
-                               
-                                if (distanceDestination > _destinationThreshold)
-                                {
-                                    transform.position += (_currentPathPoint.transform.position - transform.position).normalized * _speed * Time.deltaTime;
-                                    //_rigibody.velocity = (_currentPathPoint.transform.position - transform.position).normalized * _speed * Time.deltaTime;
-                                }
-
-                                else
-                                {
-                                    Debug.Log("CHANGE STATE");
-                                    ChangeLastState(_currentState);
-                                    ChangeState(AIMovement.State.Waiting);
-                                }
-
-
-                            }
-
-                            else
-                            {
-                                if (!OutRangeLeft())
-                                {
-                                    transform.position -= new Vector3(0,0,0.1f);
-                                    ChangeLastState(_currentState);
-                                    ChangeState(AIMovement.State.Waiting);
-                                }
-
-                                else
-                                {
-                                    transform.position += new Vector3(0, 0, 0.1f);
-                                    ChangeLastState(_currentState);
-                                    ChangeState(AIMovement.State.Waiting);
-                                }
-                                
-
-                            }
-                            
-
+                            _currentTimeBewteenFire = 0;
                         }
+                    }
 
-                        break;
 
-                    case State.Attacking:
-                        {
-                            _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
-                            if (_currentTimeBewteenFire <  _delayBetweenFire)
+                }
+
+
+                if (!isStatic)
+                {
+
+                    switch (_currentState)
+                    {
+                        case State.Patroling:
                             {
-                                _currentTimeBewteenFire += Time.deltaTime;
-                            }
-
-                            else
-                            {
-                                Fire();
-                                _currentTimeBewteenFire = 0;
-                            }
-
-
-                           
-
-
-                        }
-                        break;
-                    case State.Waiting:
-                        {
-                            if (_currentWaitingTime < _currentPathPoint.WaitingTime)
-                            {
-                                
-                                _currentWaitingTime += Time.deltaTime;
-
-
-                            }
-
-                            else
-                            {
-                                
-                                ResetCurrentWaitingTime();
-                                ChangeLastState(_currentState);
-                                GetNextPathPoint();
-                                ChangeState(State.Patroling);
-
-
-
-                            }
-
-
-                        }
-                        break;
-
-                    case State.Eard:
-                        {
-                            if (_currentTimeBeforeMoveToNoiseLocation < _timeBeforeMoveToNoiseLocation)
-                            {
-
-                                _currentTimeBeforeMoveToNoiseLocation += Time.deltaTime;
-
-
-                            }
-
-                            else
-                            {
-                                if (transform.rotation != LookNoise())
-                                {
-                                    LookNoise();
-                                }
-
-
-                                Vector3 targetLocation = new Vector3(transform.position.x, transform.position.y, _noiseLocation.z);
-                                float distanceNoiseLocation = Vector3.Distance(transform.position, targetLocation);
+                                float distanceDestination = Vector3.Distance(transform.position, _currentPathPoint.transform.position);
                                 if (CheckPlayerInRange())
                                 {
-                                    if (distanceNoiseLocation > _destinationThreshold)
-                                    {
 
-                                        transform.position += (targetLocation - transform.position).normalized * _speed * Time.deltaTime;
-                                        //_rigibody.velocity = (targetLocation - transform.position).normalized * _speed * Time.deltaTime; ;
+                                    if (distanceDestination > _destinationThreshold)
+                                    {
+                                        transform.position += (_currentPathPoint.transform.position - transform.position).normalized * _speed * Time.deltaTime;
+                                        //_rigibody.velocity = (_currentPathPoint.transform.position - transform.position).normalized * _speed * Time.deltaTime;
                                     }
 
                                     else
                                     {
-                                        if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
-                                        {
-                                            _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
-                                        }
-
-                                        else
-                                        {
-                                            
-                                            _noiseLocation = Vector3.zero;
-                                            LookPathPoint();
-                                            ChangeState(State.Patroling);
-                                            _currentTimeBeforeMoveToNoiseLocation = 0;
-                                            _currentTimeWaitingAtNoiseLocation = 0;
-
-
-                                        }
-
+                                        Debug.Log("CHANGE STATE");
+                                        ChangeLastState(_currentState);
+                                        ChangeState(AIMovement.State.Waiting);
                                     }
 
 
@@ -280,147 +161,272 @@ public class AIMovement : MonoBehaviour
                                 {
                                     if (!OutRangeLeft())
                                     {
-                                        
-
-                                        if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
-                                        {
-                                            _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
-                                        }
-
-                                        else
-                                        {
-                                            transform.position -= new Vector3(0, 0, 0.1f);
-                                            _noiseLocation = Vector3.zero;
-                                            LookPathPoint();
-                                            ChangeState(State.Patroling);
-                                            _currentTimeBeforeMoveToNoiseLocation = 0;
-                                            _currentTimeWaitingAtNoiseLocation = 0;
-
-
-                                        }
+                                        transform.position -= new Vector3(0, 0, 0.1f);
+                                        ChangeLastState(_currentState);
+                                        ChangeState(AIMovement.State.Waiting);
                                     }
 
                                     else
                                     {
-                                        
-                                        if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
-                                        {
-                                            _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
-                                        }
-
-                                        else
-                                        {
-                                             transform.position += new Vector3(0, 0, 0.1f);
-                                             _noiseLocation = Vector3.zero;
-                                            LookPathPoint();
-                                            ChangeState(State.Patroling);
-                                            _currentTimeBeforeMoveToNoiseLocation = 0;
-                                            _currentTimeWaitingAtNoiseLocation = 0;
-
-
-                                        }
+                                        transform.position += new Vector3(0, 0, 0.1f);
+                                        ChangeLastState(_currentState);
+                                        ChangeState(AIMovement.State.Waiting);
                                     }
-                                    
-                                    
-
 
 
                                 }
-                            }
-
-
-
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                
-
-
-
-
-
-
-
-
-            }
-
-            else
-            {
-                switch (_currentState)
-                {
-                    case State.Patroling:
-                        break;
-                    case State.Attacking:
-                        {
-                            _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
-                            if (_currentTimeBewteenFire < _delayBetweenFire)
-                            {
-                                _currentTimeBewteenFire += Time.deltaTime;
-                            }
-
-                            else
-                            {
-                                Fire();
-                                _currentTimeBewteenFire = 0;
-                            }
-
-
-
-                        }
-                        break;
-                    case State.Waiting:
-                        break;
-                    case State.Eard:
-                        {
-
-                            if (_currentTimeBeforeMoveToNoiseLocation < _timeBeforeMoveToNoiseLocation)
-                            {
-
-                                _currentTimeBeforeMoveToNoiseLocation += Time.deltaTime;
 
 
                             }
 
-                            else
+                            break;
+
+                        case State.Attacking:
                             {
-                                if (transform.rotation != LookNoise())
+                                _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
+                                if (_currentTimeBewteenFire < _delayBetweenFire)
                                 {
-                                    LookNoise();
+                                    _currentTimeBewteenFire += Time.deltaTime;
                                 }
 
-                                if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                else
                                 {
-                                    _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                    Fire();
+                                    _currentTimeBewteenFire = 0;
+                                }
+
+
+
+
+
+                            }
+                            break;
+                        case State.Waiting:
+                            {
+                                if (_currentWaitingTime < _currentPathPoint.WaitingTime)
+                                {
+
+                                    _currentWaitingTime += Time.deltaTime;
+
+
                                 }
 
                                 else
                                 {
 
-                                    _noiseLocation = Vector3.zero;
-                                    //LookPathPoint();
+                                    ResetCurrentWaitingTime();
+                                    ChangeLastState(_currentState);
+                                    GetNextPathPoint();
                                     ChangeState(State.Patroling);
-                                    _currentTimeBeforeMoveToNoiseLocation = 0;
-                                    _currentTimeWaitingAtNoiseLocation = 0;
+
 
 
                                 }
 
 
                             }
+                            break;
+
+                        case State.Eard:
+                            {
+                                if (_currentTimeBeforeMoveToNoiseLocation < _timeBeforeMoveToNoiseLocation)
+                                {
+
+                                    _currentTimeBeforeMoveToNoiseLocation += Time.deltaTime;
+
+
+                                }
+
+                                else
+                                {
+                                    if (transform.rotation != LookNoise())
+                                    {
+                                        LookNoise();
+                                    }
+
+
+                                    Vector3 targetLocation = new Vector3(transform.position.x, transform.position.y, _noiseLocation.z);
+                                    float distanceNoiseLocation = Vector3.Distance(transform.position, targetLocation);
+                                    if (CheckPlayerInRange())
+                                    {
+                                        if (distanceNoiseLocation > _destinationThreshold)
+                                        {
+
+                                            transform.position += (targetLocation - transform.position).normalized * _speed * Time.deltaTime;
+                                            //_rigibody.velocity = (targetLocation - transform.position).normalized * _speed * Time.deltaTime; ;
+                                        }
+
+                                        else
+                                        {
+                                            if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                            {
+                                                _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                            }
+
+                                            else
+                                            {
+
+                                                _noiseLocation = Vector3.zero;
+                                                LookPathPoint();
+                                                ChangeState(State.Patroling);
+                                                _currentTimeBeforeMoveToNoiseLocation = 0;
+                                                _currentTimeWaitingAtNoiseLocation = 0;
+
+
+                                            }
+
+                                        }
+
+
+                                    }
+
+                                    else
+                                    {
+                                        if (!OutRangeLeft())
+                                        {
+
+
+                                            if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                            {
+                                                _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                            }
+
+                                            else
+                                            {
+                                                transform.position -= new Vector3(0, 0, 0.1f);
+                                                _noiseLocation = Vector3.zero;
+                                                LookPathPoint();
+                                                ChangeState(State.Patroling);
+                                                _currentTimeBeforeMoveToNoiseLocation = 0;
+                                                _currentTimeWaitingAtNoiseLocation = 0;
+
+
+                                            }
+                                        }
+
+                                        else
+                                        {
+
+                                            if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                            {
+                                                _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                            }
+
+                                            else
+                                            {
+                                                transform.position += new Vector3(0, 0, 0.1f);
+                                                _noiseLocation = Vector3.zero;
+                                                LookPathPoint();
+                                                ChangeState(State.Patroling);
+                                                _currentTimeBeforeMoveToNoiseLocation = 0;
+                                                _currentTimeWaitingAtNoiseLocation = 0;
+
+
+                                            }
+                                        }
 
 
 
-                        }
-                        break;
-                    default:
-                        break;
+
+
+                                    }
+                                }
+
+
+
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+
+
+
+
+
+
+
+
+
                 }
-            }
 
+                else
+                {
+                    switch (_currentState)
+                    {
+                        case State.Patroling:
+                            break;
+                        case State.Attacking:
+                            {
+                                _startPointProjectile.rotation = Quaternion.LookRotation(_player.transform.position - transform.position);
+                                if (_currentTimeBewteenFire < _delayBetweenFire)
+                                {
+                                    _currentTimeBewteenFire += Time.deltaTime;
+                                }
+
+                                else
+                                {
+                                    Fire();
+                                    _currentTimeBewteenFire = 0;
+                                }
+
+
+
+                            }
+                            break;
+                        case State.Waiting:
+                            break;
+                        case State.Eard:
+                            {
+
+                                if (_currentTimeBeforeMoveToNoiseLocation < _timeBeforeMoveToNoiseLocation)
+                                {
+
+                                    _currentTimeBeforeMoveToNoiseLocation += Time.deltaTime;
+
+
+                                }
+
+                                else
+                                {
+                                    if (transform.rotation != LookNoise())
+                                    {
+                                        LookNoise();
+                                    }
+
+                                    if (_currentTimeWaitingAtNoiseLocation < _timeWaitingAtNoiseLocation)
+                                    {
+                                        _currentTimeWaitingAtNoiseLocation += Time.deltaTime;
+                                    }
+
+                                    else
+                                    {
+
+                                        _noiseLocation = Vector3.zero;
+                                        //LookPathPoint();
+                                        ChangeState(State.Patroling);
+                                        _currentTimeBeforeMoveToNoiseLocation = 0;
+                                        _currentTimeWaitingAtNoiseLocation = 0;
+
+
+                                    }
+
+
+                                }
+
+
+
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+            }
         }
+        
 
 
 
@@ -568,6 +574,14 @@ public class AIMovement : MonoBehaviour
     {
 
         Instantiate(_aiProjectile, _startPointProjectile.transform.position, _startPointProjectile.transform.rotation);
+
+
+    }
+
+    public void SetIsDead(bool isDead)
+    {
+
+        _isDead = isDead;
 
 
     }
