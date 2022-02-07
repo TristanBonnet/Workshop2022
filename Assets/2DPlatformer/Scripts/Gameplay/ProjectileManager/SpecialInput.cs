@@ -42,6 +42,7 @@ public class SpecialInput : MonoBehaviour
     private PlayerCheckClimbWall _playerCheckClimbWall = null;
     private CheckDestructible _checkDestructible = null;
     private NPCDetector _npcDetector = null;
+    private TPPlayer _tpPlayer = null;
     
 
 
@@ -57,7 +58,7 @@ public class SpecialInput : MonoBehaviour
         _playerCheckClimbWall = LevelReferences.Instance.PlayerReferences.GetComponentInParent<PlayerCheckClimbWall>();
         _checkDestructible = LevelReferences.Instance.PlayerReferences.GetComponentInParent<CheckDestructible>();
         _npcDetector = LevelReferences.Instance.PlayerReferences.GetComponentInParent<NPCDetector>();
-
+        _tpPlayer = LevelReferences.Instance.PlayerReferences.GetComponentInParent<TPPlayer>();
 
 
     }
@@ -240,6 +241,13 @@ public class SpecialInput : MonoBehaviour
 
             
             
+
+        }
+
+        else if (_tpPlayer.IsInArea)
+        {
+
+            _tpPlayer.StartTimer(true);
 
         }
 

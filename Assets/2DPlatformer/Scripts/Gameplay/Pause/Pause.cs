@@ -15,6 +15,7 @@ public class Pause : MonoBehaviour
 
 
     private InputAction _PauseInteraction = null;
+    
     [SerializeField] InputActionMapWrapper _inputActionWrapper = null;
     [SerializeField] GameObject _pauseUI = null;
     [SerializeField] EventSystem _eventSystem = null;
@@ -25,6 +26,7 @@ public class Pause : MonoBehaviour
     private float _maxTimeDelay = 0.1f;
     private float currentTimeDelay = 0f;
     private bool activeDelay = false;
+    private InputAction _horizontalAxis = null;
 
 
     private bool _isPaused = false;
@@ -36,10 +38,14 @@ public class Pause : MonoBehaviour
 
 
     [SerializeField] string _inputToCheck = "Pause";
+    [SerializeField] string _axisVer = "Ver";
 
 
     private void OnEnable()
     {
+
+        _inputActionWrapper.TryFindAction(_axisVer, out _horizontalAxis, true);
+
         if (_inputActionWrapper.TryFindAction("Pause", out _PauseInteraction, true) == true)
         {
             _PauseInteraction.performed -= PauseAbility;
