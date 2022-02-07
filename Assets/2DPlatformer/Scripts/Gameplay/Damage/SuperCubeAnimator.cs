@@ -12,17 +12,22 @@ namespace GSGD2.Player
         [SerializeField]
         private float _endJumpDownwardSpeedThresholdWhenGrounded = 5f;
 
+        [SerializeField]
+        private AudioSource _audioSourceComponent = null;
+
         // Runtime
         private CubeController _cubeController = null;
-        private Animator _animator = null;
+        [SerializeField] private Animator _animator = null;
         private Rigidbody _rigibody = null;
         private DisplacementEstimationUpdater _displacementEstimationUpdater;
+        private bool WallGrab = false;
+        private bool isGrounded = false;
 
         private void Awake()
         {
 
             _playerReferences.TryGetCubeController(out _cubeController);
-            _playerReferences.TryGetAnimator(out _animator);
+            //_playerReferences.TryGetAnimator(out _animator);
             _playerReferences.TryGetRigidbody(out _rigibody);
             _playerReferences.TryGetDisplacementEstimationUpdater(out _displacementEstimationUpdater);
            
@@ -129,7 +134,8 @@ namespace GSGD2.Player
                 case CubeController.State.Dashing:
                     {
 
-
+                        _audioSourceComponent.clip = LevelReferences.Instance.AudioManager.GetSound(8);
+                        _audioSourceComponent.Play();
                         _animator.SetTrigger("Dash");
 
                     }
@@ -166,9 +172,49 @@ namespace GSGD2.Player
 
         private void Update()
         {
-            float value = Mathf.Abs( _rigibody.velocity.z);
+            if (_cubeController.CurrentState == CubeController.State.WallGrab)
+            {
+                if (!WallGrab)
+                {
+                    WallGrab = true;
+                    _animator.SetBool("WallGrab", WallGrab);
+                }
 
-            _animator.SetFloat("IdleRunBlend", value);
+
+                float YValue = Mathf.Abs(_rigibody.velocity.y);
+                
+                _animator.SetFloat("WallGrabState", YValue);
+
+
+            }
+
+            else
+            {
+                if (WallGrab)
+                {
+                    WallGrab = false;
+                    _animator.SetBool("WallGrab", WallGrab);
+
+
+                }
+
+
+                float value = Mathf.Abs(_rigibody.velocity.z);
+
+                _animator.SetFloat("IdleRunBlend", value);
+            }
+
+            if (_cubeController.IsGrounded && !isGrounded)
+            {
+                isGrounded = true;
+                _animator.SetBool("IsGrounded", isGrounded);
+            }
+
+            else if (!_cubeController.IsGrounded && isGrounded)
+            {
+                isGrounded = false;
+                _animator.SetBool("IsGrounded", isGrounded);
+            }
         }
 
     }

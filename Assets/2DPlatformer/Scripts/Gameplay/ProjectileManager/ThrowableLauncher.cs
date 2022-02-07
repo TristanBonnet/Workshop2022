@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GSGD2.Gameplay;
+using GSGD2.Player;
+using GSGD2;
 
 public class ThrowableLauncher : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class ThrowableLauncher : MonoBehaviour
     [SerializeField] LayerMask _layers;
     [SerializeField] Transform _refTransform = null;
     [SerializeField] float _speedMultiplier = 8.5f;
+    [SerializeField] private Animator _animator = null;
+    [SerializeField] private AudioSource _audioSource = null;
     
 
     [SerializeField] float _minXRange = -15f;
@@ -27,7 +32,8 @@ public class ThrowableLauncher : MonoBehaviour
     private GameObject[] _listpointsRef = null;
     
      private bool _active = false;
-    private float _lastZRotation = 0;
+     private float _lastZRotation = 0;
+    
 
 
 
@@ -127,6 +133,10 @@ public class ThrowableLauncher : MonoBehaviour
 
     public void Fire()
     {
+
+        _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(12);
+        _audioSource.Play();
+        _animator.SetTrigger("Throw");
        ThrowableNewTest projectile =   Instantiate(_projectile, _startTransform.position, transform.rotation);
         projectile.SetNewGravity(_speedMultiplier);
         projectile._rigibody.velocity = projectile.transform.forward * LaunchForce;

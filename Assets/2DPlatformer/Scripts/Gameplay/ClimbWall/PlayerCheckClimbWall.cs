@@ -17,6 +17,8 @@ public class PlayerCheckClimbWall : MonoBehaviour
     [SerializeField] private bool _isActive = false;
     private ClimbWall _currentClimbWall = null;
     [SerializeField] private Transform _offSet = null;
+    [SerializeField] private AudioSource _audioSource = null;
+    private int currentIndexSound = 0;
     
     
 
@@ -52,6 +54,29 @@ public class PlayerCheckClimbWall : MonoBehaviour
                           Debug.Log("WALL GRAB");
                          _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
 
+
+
+                            if (!_audioSource.isPlaying)
+                            {
+                                  if (currentIndexSound == 0)
+                                 {
+                                    _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(10);
+                                     currentIndexSound = 1;
+                                    _audioSource.Play();
+                                 }
+
+                                 else
+                                 {
+                                   _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(11);
+                                   currentIndexSound = 0;
+                                    _audioSource.Play();
+                                 }
+                                 
+
+                            }
+
+                          
+
                       }
 
 
@@ -60,8 +85,9 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
                          //_cubeController.transform.position = new Vector3(_cubeController.transform.position.x, _currentClimbWall.UpTransform.position.y, _cubeController.transform.position.z);
                           _cubeController.Rigidbody.velocity = Vector3.zero;
+                          _audioSource.Stop();
 
-                     }
+                }
 
                 
                 }
@@ -71,7 +97,27 @@ public class PlayerCheckClimbWall : MonoBehaviour
                          if (_currentClimbWall.BottomTransform.position.y < _offSet.position.y)
                          {
                              _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
-                         }
+
+
+                    if (!_audioSource.isPlaying)
+                    {
+                        if (currentIndexSound == 0)
+                        {
+                            _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(10);
+                            _audioSource.Play();
+                            currentIndexSound = 1;
+                        }
+
+                        else
+                        {
+                            _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(11);
+                            _audioSource.Play();
+                            currentIndexSound = 0;
+                        }
+
+
+                    }
+                          }
 
 
                          else
@@ -79,6 +125,12 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
                                    //_cubeController.transform.position = new Vector3(_cubeController.transform.position.x, _currentClimbWall.BottomTransform.position.y, _cubeController.transform.position.z);
                                    _cubeController.Rigidbody.velocity = Vector3.zero;
+
+                           if (_audioSource.isPlaying)
+                            {
+                            _audioSource.Stop();
+
+                           }
                          }
 
                           

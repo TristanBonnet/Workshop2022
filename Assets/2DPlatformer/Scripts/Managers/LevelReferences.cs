@@ -45,6 +45,9 @@ namespace GSGD2
 		[SerializeField]
 		private CapacityMenu _capacityMenu = null;
 
+		[SerializeField]
+		private AudioManager _audioManager = null;
+
 		public PlayerReferences PlayerReferences => _playerReferences;
 		public CubeController Player => _player;
 		public PlayerStart PlayerStart => _playerStart;
@@ -57,6 +60,8 @@ namespace GSGD2
 		public ItemManager ItemManager => _itemManager;
 
 		public CapacityMenu CapacityMenu => _capacityMenu;
+
+		public AudioManager AudioManager => _audioManager;
 
 		protected override void OnDestroy()
 		{
