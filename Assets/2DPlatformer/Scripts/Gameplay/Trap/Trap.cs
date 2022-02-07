@@ -11,8 +11,10 @@ public class Trap : MonoBehaviour
     [SerializeField] Animator _animator = null;
     [SerializeField] Material UnactiveMaterial = null;
     [SerializeField] float _maxTimeReactive = 5f;
+    [SerializeField] GameObject _triggerActivation = null;
     private float _currentTimeReactive = 0;
     private Material _startMaterial = null;
+    private List<AIMovement> _currentAIMovementList = new List<AIMovement>();
 
 
 
@@ -52,7 +54,7 @@ public class Trap : MonoBehaviour
 
         }
 
-
+        
         
     }
 
@@ -69,38 +71,64 @@ public class Trap : MonoBehaviour
             // Give damages
             _damageDealer.GiveDamage(damageable);
             SetTrapActive(false);
-           Renderer[] _list =  GetComponentsInChildren<Renderer>();
+            Renderer[] _list = GetComponentsInChildren<Renderer>();
 
             for (int i = 0; i < _list.Length; i++)
             {
-                _list[i].material = UnactiveMaterial; 
+                _list[i].material = UnactiveMaterial;
             }
-        }
 
-        
-        else if (_projectile != null && _isActive)
-        {
-            SetTrapActive(false);
-            
-            Destroy(_projectile.gameObject);
-        }
 
+        }
 
         else if (aIMovement != null)
         {
-            SetTrapActive(false);
 
-            Destroy(aIMovement.gameObject);
+            Debug.Log("ADD AI");
+            _currentAIMovementList.Add(aIMovement);
 
 
         }
+
+        if (_projectile != null)
+        {
+            SetTrapActive(false);
+            CheckCurrentAIMovement();
+            Destroy(_projectile.gameObject);
+            Debug.Log("PROJECTILE");
+        }
+
+
+        
         
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        AIMovement aIMovement = other.GetComponentInParent<AIMovement>();
 
+
+        if (aIMovement != null)
+        {
+            
+            
+            _currentAIMovementList.Remove(aIMovement);
+
+
+
+        }
+
+
+
+
+
+
+    }
     public void SetTrapActive(bool isActive)
     {
+        CheckCurrentAIMovement();
         _isActive = isActive;
+        _triggerActivation.SetActive(isActive);
         Debug.Log(isActive);
         Renderer[] _list = GetComponentsInChildren<Renderer>();
 
@@ -123,6 +151,22 @@ public class Trap : MonoBehaviour
                 _list[i].material = UnactiveMaterial;
             }
         }
+
+    }
+
+
+    public void CheckCurrentAIMovement()
+    {
+        for (int i = 0; i < _currentAIMovementList.Count; i++)
+        {
+            Debug.Log("DESTROY");
+
+            _currentAIMovementList[i].SetIsDead(true);
+            _currentAIMovementList.Remove(_currentAIMovementList[i]);
+
+        }
+
+
 
     }
 }
