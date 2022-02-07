@@ -22,6 +22,9 @@ namespace GSGD2.Gameplay
 		[SerializeField]
 		private Transform _origin = null;
 
+		[SerializeField]
+		private AudioSource _audioSource = null;
+
 		public Transform Origin => _origin;
 		public float BumpForce => _bumpForce;
 
@@ -39,7 +42,10 @@ namespace GSGD2.Gameplay
 			{
 				_bumperReceiversInRange.Add(concreteOther);
 				concreteOther.ApplyBump(this);
+				_audioSource.Play();
 			}
+
+			
 		}
 
 		private void OnTriggerExit(Collider other)

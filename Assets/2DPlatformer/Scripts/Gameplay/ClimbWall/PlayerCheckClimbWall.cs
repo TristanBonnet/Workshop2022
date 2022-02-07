@@ -56,7 +56,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
 
 
 
-                            if (!_audioSource.isPlaying)
+                            if (!_audioSource.isPlaying && _cubeController.Rigidbody.velocity.y != 0)
                             {
                                   if (currentIndexSound == 0)
                                  {
@@ -99,7 +99,7 @@ public class PlayerCheckClimbWall : MonoBehaviour
                              _cubeController.Rigidbody.velocity = new Vector3(0, _specialInput.LeftVerticalAxis * _climbSpeed, 0);
 
 
-                    if (!_audioSource.isPlaying)
+                    if (!_audioSource.isPlaying && _cubeController.Rigidbody.velocity.y != 0)
                     {
                         if (currentIndexSound == 0)
                         {

@@ -36,6 +36,7 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] Pause _pause = null;
     [SerializeField] CapacityMenu _capicity = null;
     [SerializeField] GameObject _pauseUI = null;
+    [SerializeField] AudioSource _audioSource = null;
     
      
 
@@ -227,6 +228,8 @@ public class SpecialInput : MonoBehaviour
         else if (_checkDestructible.CurrentDestructibleWall != null)
         {
 
+            _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(9);
+            _audioSource.Play();
             Destroy(_checkDestructible.CurrentDestructibleWall.gameObject);
 
 

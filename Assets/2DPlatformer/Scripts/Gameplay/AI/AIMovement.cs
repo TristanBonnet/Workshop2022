@@ -22,6 +22,7 @@ public class AIMovement : MonoBehaviour
     [SerializeField] float _delayBetweenFire = 1f;
     [SerializeField] Transform _startPointProjectile = null;
     [SerializeField] AIProjectile _aiProjectile = null;
+    [SerializeField] AudioSource _audioSource = null;
     private bool _seePlayer = false;
     private PlayerController _player = null;
     private float _currentTimeBewteenFire = 0;
@@ -56,6 +57,7 @@ public class AIMovement : MonoBehaviour
     private State _lastState = State.Waiting;
 
     public State CurrentState => _currentState;
+    public bool IsDead => _isDead;
 
     private void Start()
     {
@@ -572,7 +574,8 @@ public class AIMovement : MonoBehaviour
 
     private void Fire()
     {
-
+        _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(7);
+        _audioSource.Play();
         Instantiate(_aiProjectile, _startPointProjectile.transform.position, _startPointProjectile.transform.rotation);
 
 
@@ -582,6 +585,8 @@ public class AIMovement : MonoBehaviour
     {
 
         _isDead = isDead;
+        _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(13);
+        _audioSource.Play();
 
 
     }

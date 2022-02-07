@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GSGD2.Player;
 using GSGD2.Gameplay;
+using GSGD2;
 
 public class Trap : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Trap : MonoBehaviour
     [SerializeField] Material UnactiveMaterial = null;
     [SerializeField] float _maxTimeReactive = 5f;
     [SerializeField] GameObject _triggerActivation = null;
+    [SerializeField] AudioSource _audioSource = null;
     private float _currentTimeReactive = 0;
     private Material _startMaterial = null;
     private List<AIMovement> _currentAIMovementList = new List<AIMovement>();
@@ -127,6 +129,8 @@ public class Trap : MonoBehaviour
     public void SetTrapActive(bool isActive)
     {
         CheckCurrentAIMovement();
+        _audioSource.clip = LevelReferences.Instance.AudioManager.GetSound(14);
+        _audioSource.Play();
         _isActive = isActive;
         _triggerActivation.SetActive(isActive);
         Debug.Log(isActive);
@@ -161,8 +165,12 @@ public class Trap : MonoBehaviour
         {
             Debug.Log("DESTROY");
 
-            _currentAIMovementList[i].SetIsDead(true);
-            _currentAIMovementList.Remove(_currentAIMovementList[i]);
+            if (!_currentAIMovementList[i].IsDead)
+            {
+                _currentAIMovementList[i].SetIsDead(true);
+                _currentAIMovementList.Remove(_currentAIMovementList[i]);
+            }
+            
 
         }
 

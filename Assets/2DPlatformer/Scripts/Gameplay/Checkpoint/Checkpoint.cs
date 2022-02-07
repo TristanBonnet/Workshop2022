@@ -20,6 +20,9 @@ namespace GSGD2.Gameplay
 		[SerializeField]
 		private int _index = 0;
 
+		[SerializeField]
+		private AudioSource _audioSource = null;
+
 		private bool _hasBeenTriggeredYet = false;
 
 		public int Index => _index;
@@ -67,6 +70,7 @@ namespace GSGD2.Gameplay
 				LevelReferences.Instance.PlayerStart.UpdateLastCheckpoint(this);
 				_checkpointTriggered.Invoke(this, _hasBeenTriggeredYet == true ? EventType.CheckpointPassed : EventType.FirstTimeReachedCheckpoint);
 				_hasBeenTriggeredYet = true;
+				_audioSource.Play();
 			}
 		}
 

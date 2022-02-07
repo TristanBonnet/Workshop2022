@@ -65,9 +65,9 @@ public class InteractableNPC : MonoBehaviour, ICommandSender
 
         if (playerController != null && npcDetector != null)
         {
-            npcDetector.SetCurrentInteractableNPC(null);
+            
             npcDetector.SetInDialogue(false);
-
+            npcDetector.SetCurrentInteractableNPC(null);
         }
 
 
