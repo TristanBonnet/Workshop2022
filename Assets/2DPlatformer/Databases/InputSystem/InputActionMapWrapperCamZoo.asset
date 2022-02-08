@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73493b7c0f3ecb743af8a26a1bae3fe7, type: 3}
+  m_Name: InputActionMapWrapperCamZoo
+  m_EditorClassIdentifier: 
+  _actionMap:
+    m_Name: Action Map
+    m_Id: fd28465e-f92d-48e0-b78e-f8b5a5d85399
+    m_Asset: {fileID: 0}
+    m_Actions:
+    - m_Name: Hor
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: fc4590f2-8055-4ee8-8db2-ea8327607618
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: Ver
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 3eb9188a-140c-482a-9c17-02cc66ec0f1a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    - m_Name: RVer
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 2f6deb12-2d5a-495d-b3d6-94a2b4cedbda
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Bindings:
+    - m_Name: 
+      m_Id: 5865303e-3e76-4ef7-9ba4-6ee64c3d0be0
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Hor
+      m_Flags: 0
+    - m_Name: 1D Axis
+      m_Id: dd3369d3-f937-4d03-bad5-ebc48d3a8fed
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Hor
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 53527d9e-9543-41e2-9efd-3bdff8d6d88c
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Hor
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 477853fa-71ed-464a-af15-61cb136c8943
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Hor
+      m_Flags: 8
+    - m_Name: 
+      m_Id: a7f5e772-a30c-4798-9ea4-d2c436c2c016
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ver
+      m_Flags: 0
+    - m_Name: 1D Axis
+      m_Id: 8e466844-32df-4407-a147-0a3e0d4af339
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ver
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: a430ee29-4b3e-4c8e-b091-af69f826282c
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ver
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 7b602d42-ab91-4ae7-b3a7-f382c3ac256f
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Ver
+      m_Flags: 8
+    - m_Name: 
+      m_Id: efc82260-6c27-4203-9bf9-5fe3978a5699
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: RVer
+      m_Flags: 0
+    - m_Name: 1D Axis
+      m_Id: 91c8682d-ff03-47eb-84b3-6a68b88cac08
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: RVer
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 0304ff65-b674-4506-92b4-143e2de072ff
+      m_Path: <Gamepad>/rightStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: RVer
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: b255abe9-0547-4cc6-88a6-5f347e14a4e9
+      m_Path: <Gamepad>/rightStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: RVer
+      m_Flags: 8
