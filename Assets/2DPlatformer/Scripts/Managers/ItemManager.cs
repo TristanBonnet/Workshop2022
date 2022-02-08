@@ -10,6 +10,9 @@ public class ItemManager : MonoBehaviour
 
     [SerializeField] ThrowableLauncher _throwableLauncher = null;
 
+    [SerializeField] Animator _animator = null;
+
+
     private void Start()
     {
         LevelReferences.Instance.UIManager.UpdatePebbleText(0, _currentProjectileCount.ToString());
@@ -61,6 +64,7 @@ public class ItemManager : MonoBehaviour
             
             _throwableLauncher.Fire();
             RemoveProjectile(1);
+            
 
 
         } 

@@ -19,6 +19,13 @@ public class PlayerHUD : MonoBehaviour
     private void Start()
     {
 
+
+        UpdateLife();
+    }
+
+
+    public void UpdateLife()
+    {
         if (LevelReferences.Instance.PlayerReferences.TryGetPlayerDamageable(out PlayerDamageable playerDamageable))
         {
             int currentMark = Mathf.RoundToInt(playerDamageable.MaxHealth);
@@ -39,8 +46,8 @@ public class PlayerHUD : MonoBehaviour
                     _listImage[i].gameObject.SetActive(false);
                 }
 
-                
-                
+
+
 
             }
 
@@ -50,7 +57,6 @@ public class PlayerHUD : MonoBehaviour
                 _listImage[i].sprite = _spriteForLifePoints[1];
 
             }
-        } 
-
+        }
     }
 }

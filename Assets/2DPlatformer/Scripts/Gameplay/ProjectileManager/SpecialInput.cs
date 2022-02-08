@@ -37,6 +37,7 @@ public class SpecialInput : MonoBehaviour
     [SerializeField] CapacityMenu _capicity = null;
     [SerializeField] GameObject _pauseUI = null;
     [SerializeField] AudioSource _audioSource = null;
+    [SerializeField] Animator _animator = null;
     
      
 
@@ -129,8 +130,11 @@ public class SpecialInput : MonoBehaviour
 
         }
 
+        
         _throwableLauncher.SetActive(false);
         _throwableLauncher.gameObject.SetActive(false);
+
+        
 
 
 
@@ -138,10 +142,16 @@ public class SpecialInput : MonoBehaviour
 
     private void _inputActiveProjectileLauncher(InputAction.CallbackContext obj)
     {
+        if (_itemManager.CheckProjectileCountIsSuperiorThan0())
+        {
+            _animator.SetTrigger("PrepareThrow");
+            _throwableLauncher.gameObject.SetActive(true);
+            _throwableLauncher.SetActive(true);
+            
+            
+        }
+
         
-        
-        _throwableLauncher.gameObject.SetActive(true);
-        _throwableLauncher.SetActive(true);
 
     }
 

@@ -48,7 +48,9 @@ namespace GSGD2.Gameplay
 		{
 			base.OnTakeDamage(damage);
 			_cubeController.ChangeState(CubeController.State.DamageTaken);
-		}
+			LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
+
+        }
 
 		protected override void OnTakeDamageAndHealthBelowZero(Damage damage)
 		{
@@ -57,6 +59,7 @@ namespace GSGD2.Gameplay
 			{
 				RestoreHealth(healthAtStart);
 				LevelReferences.Instance.PlayerStart.ResetPlayerPosition();
+				LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
 			}
 		}
 
