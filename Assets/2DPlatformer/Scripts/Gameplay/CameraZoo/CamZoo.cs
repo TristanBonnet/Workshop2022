@@ -12,11 +12,13 @@ public class CamZoo : MonoBehaviour
     [SerializeField] string _inputAxisHor = "Hor";
     [SerializeField] string _inputAxisVer = "Ver";
     [SerializeField] string _inputRightAxisVer = "RVer";
+    [SerializeField] float _rotateSpeed = 30f;
 
 
     private InputAction _inputAxisHorAction = null;
     private InputAction _inputAxisVerAction = null;
     private InputAction _inputRightAxisVerAction = null;
+    private float XRotation = 0;
 
     [SerializeField] float _camSpeed = 1f;
 
@@ -42,9 +44,9 @@ public class CamZoo : MonoBehaviour
 
         transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, _camSpeed * Time.deltaTime * VerticalAxis, 0);
 
-        float newRotation = _camera.transform.rotation.x + (Time.deltaTime * RightVerticalAxis * _camSpeed);
+        XRotation += Time.deltaTime * -RightVerticalAxis * _rotateSpeed;
 
-       transform.rotation =  Quaternion.Euler(newRotation, 0, 0);
+       _camera.transform.localEulerAngles =  new Vector3(XRotation, 0, 0);
         
 
     }

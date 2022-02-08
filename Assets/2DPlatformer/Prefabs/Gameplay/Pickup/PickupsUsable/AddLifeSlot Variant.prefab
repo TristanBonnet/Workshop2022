@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9119622453447099650, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: m_Name
-      value: AddLifeSlot
+      value: AddLifeSlot Variant.01
       objectReference: {fileID: 0}
     - target: {fileID: 9119622453447099772, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: _pickupCommand
@@ -21,15 +21,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119622453447099773, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03671789
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119622453447099773, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -36.249958
       objectReference: {fileID: 0}
     - target: {fileID: 9119622453447099773, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.158293
+      value: 26.387817
       objectReference: {fileID: 0}
     - target: {fileID: 9119622453447099773, guid: 23662a28ca2f53949a6dc1eb6a284df1, type: 3}
       propertyPath: m_LocalRotation.w
