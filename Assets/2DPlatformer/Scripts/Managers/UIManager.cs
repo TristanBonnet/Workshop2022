@@ -16,6 +16,8 @@ namespace GSGD2.UI
 		[SerializeField]
 		private PlayerHUDMenu _playerHUD = null;
 
+		[SerializeField] PlayerHUD _playerHUD2 = null;
+
 		public Canvas MainCanvas => _mainCanvas;
 		public PlayerHUDMenu PlayerHUD => _playerHUD;
 
@@ -26,6 +28,7 @@ namespace GSGD2.UI
 		[SerializeField] TextMeshProUGUI _maxPebbleText = null;
 		[SerializeField] DialogueUI _dialogueUI = null;
 
+		public PlayerHUD PlayerHUD2 => _playerHUD2;
 		public DialogueUI DialogueUI => _dialogueUI;
 
 		public void ShowPlayerHUD(bool isActive)

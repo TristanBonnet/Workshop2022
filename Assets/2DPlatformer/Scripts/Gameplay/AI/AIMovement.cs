@@ -23,6 +23,8 @@ public class AIMovement : MonoBehaviour
     [SerializeField] Transform _startPointProjectile = null;
     [SerializeField] AIProjectile _aiProjectile = null;
     [SerializeField] AudioSource _audioSource = null;
+    [SerializeField] Animator _animator = null;
+    private Vector3 _lastPosition;
     private bool _seePlayer = false;
     private PlayerController _player = null;
     private float _currentTimeBewteenFire = 0;
@@ -61,6 +63,7 @@ public class AIMovement : MonoBehaviour
 
     private void Start()
     {
+        _lastPosition = transform.position;
         if (LevelReferences.Instance.PlayerReferences.TryGetPlayerController(out PlayerController player))
         {
 
@@ -428,12 +431,24 @@ public class AIMovement : MonoBehaviour
 
             }
         }
+
+
+
+
+        float distance = Vector3.Distance(transform.position, _lastPosition);
+
+        if (distance > 0)
+        {
+            _animator.SetFloat("IdleRunBlend", 1);
+        }
+
+        else
+        {
+            _animator.SetFloat("IdleRunBlend", 0);
+        }
         
 
-
-
-
-
+        _lastPosition = transform.position;
 
     }
 

@@ -42,9 +42,9 @@ public class CamZoo : MonoBehaviour
 
         transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, _camSpeed * Time.deltaTime * VerticalAxis, 0);
 
-        float newRotation = _camera.transform.rotation.x + Time.deltaTime * RightVerticalAxis * _camSpeed;
+        float newRotation = _camera.transform.rotation.x + (Time.deltaTime * RightVerticalAxis * _camSpeed);
 
-        Quaternion.Euler(newRotation, 0, 0);
+       transform.rotation =  Quaternion.Euler(newRotation, 0, 0);
         
 
     }

@@ -156,6 +156,7 @@ namespace GSGD2.Player
             if (args.currentState != CubeController.State.Jumping)
             {
                 _animator.SetBool("Jump", false);
+                _animator.SetTrigger("CancelJump");
 
             }
 
