@@ -350,6 +350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Standing Torch Idle 01
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4622a33efa445d645985966273f4a263, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3953625161141938638, guid: 4622a33efa445d645985966273f4a263, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -391,6 +395,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7119995451026221190}
     m_Modifications:
+    - target: {fileID: 117129764078338971, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054236336939974841, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4955469084603826860, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
       propertyPath: _animator
       value: 
@@ -475,6 +487,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4955469084826838467, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4955469085028170596, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -482,6 +498,14 @@ PrefabInstance:
     - target: {fileID: 4955469085028170597, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4955469085028170599, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7527224348840247429, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7bda3c9cdf1e5e4ab6649674b59028a, type: 3}
