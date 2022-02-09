@@ -100,19 +100,19 @@ namespace GSGD2.Player
 		private bool _resetJumpCountWhenFalling = true;
 
 		[SerializeField]
-		private int _allowedJumpCountWhenFalling = 1;
+		public int _allowedJumpCountWhenFalling = 1;
 
 		[SerializeField]
 		private bool _resetJumpCountWhenWallJumping = true;
 
 		[SerializeField]
-		private int _allowedJumpCountWhenWallJumping = 1;
+		public int _allowedJumpCountWhenWallJumping = 1;
 
 		[SerializeField]
 		private bool _resetJumpCountWhenBumping = true;
 
 		[SerializeField]
-		private int _allowedJumpCountWhenBumping = 1;
+		public int _allowedJumpCountWhenBumping = 1;
 
 		[Header("Dash")]
 		[SerializeField]

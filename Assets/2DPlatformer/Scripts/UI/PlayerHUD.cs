@@ -26,27 +26,35 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateLife()
     {
+        
         if (LevelReferences.Instance.PlayerReferences.TryGetPlayerDamageable(out PlayerDamageable playerDamageable))
         {
+            
             int currentMark = Mathf.RoundToInt(playerDamageable.MaxHealth);
             int maxLifeNumber = Mathf.RoundToInt(playerDamageable.MaxHealth);
+
+            
             int lifeNumber = Mathf.RoundToInt(playerDamageable.CurrentHealth);
 
-            for (int i = 0; i < maxLifeNumber; i++)
+            for (int i = 1; i <= maxLifeNumber; i++)
             {
 
                 _listImage[i].sprite = _spriteForLifePoints[0];
+               
 
             }
 
-            for (int i = 0; i < _listImage.Count; i++)
+            for (int i = 1; i <= _listImage.Count; i++)
             {
-                if (i >= maxLifeNumber)
+                if (i > maxLifeNumber)
                 {
-                    _listImage[i].gameObject.SetActive(false);
+                    _listImage[i-1].gameObject.SetActive(false);
                 }
 
-
+                else
+                {
+                    _listImage[i - 1].gameObject.SetActive(true);
+                }
 
 
             }

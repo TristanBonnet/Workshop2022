@@ -1,5 +1,3 @@
-
-
 namespace GSGD2.Gameplay
 {
     using System.Collections;
@@ -21,13 +19,12 @@ namespace GSGD2.Gameplay
             if (playerDamageable != null)
             {
                 playerDamageable.IncrementMaxHealth(_slotNumberToAdd);
-                HealthBarHUDMenu _healthBar = LevelReferences.Instance.UIManager.GetComponentInChildren<HealthBarHUDMenu>();
-                if (_healthBar != null)
-                {
-                    _healthBar.UpdateHealth(playerDamageable.CurrentHealth, playerDamageable.MaxHealth);
+
+                    
+                    LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
 
 
-                }
+                
                 
                 return true;
             }

@@ -203,6 +203,7 @@ namespace GSGD2.Gameplay
 
 
 			maxHealth += health;
+			Debug.Log(maxHealth);
 
         }
 

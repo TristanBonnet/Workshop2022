@@ -50,6 +50,13 @@
 					{
 						player.AddMaximumAllowedForceToJump(_modifier == Modifier.AddOneAllowedForce ? 1 : -1);
 
+                        if (player.TryGetComponent(out CubeController cube))
+                        {
+							cube._allowedJumpCountWhenBumping += 1;
+							cube._allowedJumpCountWhenFalling += 1;
+							cube._allowedJumpCountWhenWallJumping += 1;
+						}
+
                         if (!LevelReferences.Instance.CapacityMenu.FirstAbilityButton.isActiveAndEnabled)
                         {
 							LevelReferences.Instance.CapacityMenu.SetElementsVisibility(0, true);
