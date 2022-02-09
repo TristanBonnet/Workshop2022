@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rat
+    second: {fileID: 2100000, guid: a9c6b86781911bb4b873c7ee0dea8086, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
