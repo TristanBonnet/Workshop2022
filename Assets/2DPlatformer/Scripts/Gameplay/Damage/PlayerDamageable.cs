@@ -57,7 +57,7 @@ namespace GSGD2.Gameplay
 			base.OnTakeDamageAndHealthBelowZero(damage);
 			if (_resetPositionWhenHealthBelowZero == true)
 			{
-				RestoreHealth(healthAtStart);
+				RestoreHealth(Mathf.RoundToInt(MaxHealth));
 				LevelReferences.Instance.PlayerStart.ResetPlayerPosition();
 				LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
 			}

@@ -80,6 +80,7 @@ public class Pause : MonoBehaviour
             {
                 SetPauseActive(false);
                 SetSelectedButton(null);
+                //SetCommandMenuActive(false);
                 SetPauseUIActive(false);
 
             }
@@ -209,6 +210,15 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 0;
         }
+
+    }
+
+
+    public void SetCommandMenu(bool active)
+    {
+
+
+        _commandMenu.SetActive(active);
 
     }
 }
