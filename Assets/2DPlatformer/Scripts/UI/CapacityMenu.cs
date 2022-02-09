@@ -21,6 +21,8 @@ public class CapacityMenu : MonoBehaviour
 
     [SerializeField] private Button _thirdAbilityButtton = null;
 
+    [SerializeField] private Button _fourthAbilityButton = null;
+
     [SerializeField] private List<Sprite> _listSprites = null;
 
     [SerializeField] private Image _capacityPicture = null;
@@ -36,6 +38,8 @@ public class CapacityMenu : MonoBehaviour
 
     public Button ThirdAbilityButton => _thirdAbilityButtton;
 
+    public Button FourthAbilityButton => _fourthAbilityButton;
+
     public Image CapacityPicture => _capacityPicture;
 
     public List<Button> ListButton => _listButton;
@@ -44,7 +48,7 @@ public class CapacityMenu : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i <= 2; i++)
+        for (int i = 0; i <= 3; i++)
         {
             if (i == 0)
             {
@@ -59,6 +63,11 @@ public class CapacityMenu : MonoBehaviour
             else if (i == 2)
             {
                 _listButton.Add(_thirdAbilityButtton);
+            }
+
+            else if (i == 3)
+            {
+                _listButton.Add(_fourthAbilityButton);
             }
         }
 
@@ -113,6 +122,11 @@ public class CapacityMenu : MonoBehaviour
 
             _thirdAbilityButtton.gameObject.SetActive(visible);
 
+        }
+
+        else if (index == 3)
+        {
+            _fourthAbilityButton.gameObject.SetActive(visible);
         }
        
 
