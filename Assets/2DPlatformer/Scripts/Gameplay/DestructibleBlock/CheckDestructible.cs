@@ -25,15 +25,15 @@ public class CheckDestructible : MonoBehaviour
         if (_isActive)
         {
 
-            Debug.DrawLine(_startTransform.position, _startTransform.transform.forward * _distance, Color.black);
+            Debug.DrawLine(_startTransform.position, _startTransform.position + _startTransform.transform.forward * _distance, Color.blue);
             if (Physics.Raycast(_startTransform.position, _startTransform.forward, out RaycastHit hit, _distance))
             {
-                Debug.Log("HIT DESTRUCTIBLE");
+                
                 DestructibleBlock destructibleWall = hit.collider.GetComponentInParent<DestructibleBlock>();
 
                 if (destructibleWall != null)
                 {
-
+                    Debug.Log("HIT DESTRUCTIBLE");
                     _currentDestructibleWall = destructibleWall;
 
 

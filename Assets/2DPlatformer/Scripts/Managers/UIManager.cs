@@ -4,6 +4,7 @@ namespace GSGD2.UI
 	using System.Collections.Generic;
 	using UnityEngine;
 	using TMPro;
+	using UnityEngine.UI;
 
 	/// <summary>
 	/// Manager class that handle global functionnality around UI. It is a proxy to UI subsystem and can enable or disable them.
@@ -27,9 +28,26 @@ namespace GSGD2.UI
 		[SerializeField] TextMeshProUGUI _currentPebbleText = null;
 		[SerializeField] TextMeshProUGUI _maxPebbleText = null;
 		[SerializeField] DialogueUI _dialogueUI = null;
+		[SerializeField] GameObject _inputDialogue = null;
+		[SerializeField] TextMeshProUGUI _textInput = null;
+		[SerializeField] Image _inputDialogueImage = null;
+		[SerializeField] List<Sprite> _listSprite = null;
+		[SerializeField] List<string> _listText = null;
 
 		public PlayerHUD PlayerHUD2 => _playerHUD2;
 		public DialogueUI DialogueUI => _dialogueUI;
+
+		public TextMeshProUGUI TextInput => _textInput;
+
+		public Image InputDialogueImage => _inputDialogueImage;
+
+		public GameObject InputDialogue => _inputDialogue;
+
+		public List<Sprite> ListSprite => _listSprite;
+
+		public List<string> ListText => _listText;
+
+
 
 		public void ShowPlayerHUD(bool isActive)
 		{
@@ -78,5 +96,24 @@ namespace GSGD2.UI
 			}
             
         }
+
+		public void SetInputDialogueActive(bool active)
+		{
+
+			_inputDialogue.SetActive(active);
+
+
+		}
+
+
+		public void SetTextAndSprite(string text, Sprite sprite)
+        {
+			_inputDialogueImage.sprite = sprite;
+			_textInput.SetText(text);
+
+
+        }
 	}
+
+	
 }

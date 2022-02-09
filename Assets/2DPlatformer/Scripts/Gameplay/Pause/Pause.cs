@@ -78,10 +78,14 @@ public class Pause : MonoBehaviour
 
             else
             {
-                SetPauseActive(false);
-                SetSelectedButton(null);
-                //SetCommandMenuActive(false);
-                SetPauseUIActive(false);
+                if (!_commandMenu.activeSelf)
+                {
+                    SetPauseActive(false);
+                    SetSelectedButton(null);
+                    //SetCommandMenuActive(false);
+                    SetPauseUIActive(false);
+
+                }
 
             }
 

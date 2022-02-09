@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject _storyLayer = null;
     [SerializeField] GameObject _commandLayer = null;
     [SerializeField] GameObject _firstScreen = null;
+    [SerializeField] GameObject _creditsScreen = null;
     [SerializeField] GameObject _playeButton = null;
     [SerializeField] private EventSystem _eventSystem = null;
     private bool _activeTimer = false;
@@ -22,7 +23,8 @@ public class MainMenu : MonoBehaviour
         MainLayer,
         StoryLayer,
         CommandLayer,
-        FirstScreen
+        FirstScreen,
+        Credits
 
    }
 
@@ -59,7 +61,8 @@ public class MainMenu : MonoBehaviour
             _storyLayer.SetActive(false);
             _commandLayer.SetActive(false);
             _firstScreen.SetActive(false);
-             
+            _creditsScreen.SetActive(false);
+
             _currentLayer = Layer.MainLayer;
             _activeTimer = true;
             
@@ -71,6 +74,7 @@ public class MainMenu : MonoBehaviour
             _mainLayer.SetActive(false);
             _storyLayer.SetActive(true);
             _commandLayer.SetActive(false);
+            _creditsScreen.SetActive(false);
             _currentLayer = Layer.StoryLayer;
         }
 
@@ -80,7 +84,19 @@ public class MainMenu : MonoBehaviour
             _mainLayer.SetActive(false);
             _storyLayer.SetActive(false);
             _commandLayer.SetActive(true);
+            _creditsScreen.SetActive(false);
             _currentLayer = Layer.CommandLayer;
+        }
+
+        else if (layer == 3)
+        {
+            _mainLayer.SetActive(false);
+            _storyLayer.SetActive(false);
+            _commandLayer.SetActive(false);
+            _creditsScreen.SetActive(true);
+            _currentLayer = Layer.Credits;
+                
+
         }
 
         
@@ -121,6 +137,13 @@ public class MainMenu : MonoBehaviour
 
                 }
                 break;
+            case Layer.Credits:
+            {
+
+                    SwitchLayer(0);
+
+            }
+            break;
             default:
                 break;
         }
@@ -159,6 +182,13 @@ public class MainMenu : MonoBehaviour
                 {
 
                     SwitchLayer(0);
+
+                }
+                break;
+            case Layer.Credits:
+                {
+
+
 
                 }
                 break;

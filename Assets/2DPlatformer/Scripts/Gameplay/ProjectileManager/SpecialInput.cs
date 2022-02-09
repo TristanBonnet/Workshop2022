@@ -251,6 +251,7 @@ public class SpecialInput : MonoBehaviour
 
               
             _npcDetector.SetInDialogue(true);
+            LevelReferences.Instance.UIManager.SetTextAndSprite(LevelReferences.Instance.UIManager.ListText[1], LevelReferences.Instance.UIManager.ListSprite[1]);
 
             
             

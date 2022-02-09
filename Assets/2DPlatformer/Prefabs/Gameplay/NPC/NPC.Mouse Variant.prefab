@@ -1,0 +1,196 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &261872903658999085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2141633027200262352}
+    m_Modifications:
+    - target: {fileID: 1059869791451512494, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.014010087
+      objectReference: {fileID: 0}
+    - target: {fileID: 1059869791451512494, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.03069913
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358871238894396411, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_Name
+      value: Idle_Sourie
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.98700005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.019001007
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.79335326
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.60876167
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842111463246526785, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910791901954968425, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09236491
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910791901954968425, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.050766036
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051606395728970150, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.15473293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5051606395728970150, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.015589179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821288265067637058, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.16329099
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821288265067637058, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.038303964
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53348fdd6972ab445b711d1d56b9dea4, type: 3}
+--- !u!1001 &8148706112291814765
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7831371543387119036, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_Name
+      value: NPC.Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.380001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _NPCPicture
+      value: 
+      objectReference: {fileID: 21300000, guid: 159e9decbd81b6a4eaf76b7d0e801cbc, type: 3}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _pickUpCommand
+      value: 
+      objectReference: {fileID: 11400000, guid: f90974766a362984984a0104862ee48c, type: 2}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.data[0]
+      value: '..OOoh my lord..! I thought it was one of these rats coming back for
+        me. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.data[1]
+      value: "I\u2019d never seen more brutal animals, they seemed like possessed
+        by the devil. But they were nothing compared to what the man did to that
+        poor girl.. I would have never assumed humans were capable of such atrociousness.."
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.data[2]
+      value: 'You are looking for the rats.. I heard that they were hanging out in
+        the depth of the sewers.. their leader would be quite recognizable.. he ate
+        the finger of the girl to get her ring.. and exhibited it around his neck
+        like a trophy.. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.data[3]
+      value: One of them left these teeth behind him.. they used them to nibble their
+        way out of the room.. take them.. they will be more useful to you than me..
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: _sentences.Array.data[4]
+      value: I hope you will be able to stop these monsters..
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371544774301119, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+--- !u!4 &2141633027200262352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+  m_PrefabInstance: {fileID: 8148706112291814765}
+  m_PrefabAsset: {fileID: 0}

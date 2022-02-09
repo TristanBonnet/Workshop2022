@@ -52,7 +52,8 @@ public class InteractableNPC : MonoBehaviour, ICommandSender
         if (playerController != null && npcDetector != null)
         {
             npcDetector.SetCurrentInteractableNPC(this);
-            
+            LevelReferences.Instance.UIManager.SetInputDialogueActive(true);
+            LevelReferences.Instance.UIManager.SetTextAndSprite(LevelReferences.Instance.UIManager.ListText[0], LevelReferences.Instance.UIManager.ListSprite[0]);
 
         }
     }
@@ -68,6 +69,7 @@ public class InteractableNPC : MonoBehaviour, ICommandSender
             
             npcDetector.SetInDialogue(false);
             npcDetector.SetCurrentInteractableNPC(null);
+            LevelReferences.Instance.UIManager.SetInputDialogueActive(false);
         }
 
 

@@ -76,12 +76,8 @@ public class NPCDetector : MonoBehaviour
 
             runDelay = true;
             LevelReferences.Instance.UIManager.DialogueUI.gameObject.SetActive(false);
-
-            if (_currentInteractableNPC.GiveUpgrade&& _currentInteractableNPC.PickupCommand != null)
-            {
-                _currentInteractableNPC.PickupCommand.Apply(_currentInteractableNPC);
-                _currentInteractableNPC.SetGiveUpgrade(false);
-            }
+            LevelReferences.Instance.UIManager.InputDialogue.SetActive(false);
+            
 
 
         }
@@ -127,7 +123,11 @@ public class NPCDetector : MonoBehaviour
 
         if (_currentSentenceIndex > _currentInteractableNPC.Sentences.Count - 1)
         {
-
+            if (_currentInteractableNPC.GiveUpgrade && _currentInteractableNPC.PickupCommand != null)
+            {
+                _currentInteractableNPC.PickupCommand.Apply(_currentInteractableNPC);
+                _currentInteractableNPC.SetGiveUpgrade(false);
+            }
             SetInDialogue(false);
             _currentSentenceIndex = 0;
 
@@ -147,5 +147,7 @@ public class NPCDetector : MonoBehaviour
         LevelReferences.Instance.UIManager.DialogueUI.SetSprite(_currentInteractableNPC.NPCSprite );
 
     }
+
+
 
 }
