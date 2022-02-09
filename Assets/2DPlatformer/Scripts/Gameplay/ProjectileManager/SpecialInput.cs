@@ -292,9 +292,10 @@ public class SpecialInput : MonoBehaviour
 
             else
             {
+               
                 _pause.SetPauseActive(false);
                 _pause.SetSelectedButton(null);
-                _capicity.CapacityPicture.gameObject.SetActive(false);
+                //_capicity.CapacityPicture.gameObject.SetActive(false);
                 _capicity.gameObject.SetActive(false);
             }
 
