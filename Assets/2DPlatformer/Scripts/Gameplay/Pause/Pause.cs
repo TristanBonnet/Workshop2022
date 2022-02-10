@@ -168,12 +168,12 @@ public class Pause : MonoBehaviour
 
         if (_isPaused)
         {
-            EventSystem.current.SetSelectedGameObject(buttonToSelect.gameObject);
+            _eventSystem.SetSelectedGameObject(buttonToSelect.gameObject);
         }
 
         else
         {
-            EventSystem.current.SetSelectedGameObject(null);
+            _eventSystem.SetSelectedGameObject(null);
         }
 
     }

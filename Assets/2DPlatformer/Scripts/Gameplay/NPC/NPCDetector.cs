@@ -128,6 +128,10 @@ public class NPCDetector : MonoBehaviour
                 _currentInteractableNPC.PickupCommand.Apply(_currentInteractableNPC);
                 _currentInteractableNPC.SetGiveUpgrade(false);
             }
+            if (_currentInteractableNPC.ListObjectToDestroy.Count > 0)
+            {
+                _currentInteractableNPC.DestoyGameObject();
+            }
             SetInDialogue(false);
             _currentSentenceIndex = 0;
 

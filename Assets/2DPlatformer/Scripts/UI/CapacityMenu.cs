@@ -27,7 +27,7 @@ public class CapacityMenu : MonoBehaviour
 
     [SerializeField] private Image _capacityPicture = null;
 
-    private List<Button> _listButton = new List<Button>();
+    [SerializeField] private List<Button> _listButton;
     
     
 
@@ -48,33 +48,7 @@ public class CapacityMenu : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i <= 3; i++)
-        {
-            if (i == 0)
-            {
-                _listButton.Add(_firstAbilityButton);
-            }
-
-            else if (i == 1)
-            {
-                _listButton.Add(_secondAbilityButton);
-            }
-
-            else if (i == 2)
-            {
-                _listButton.Add(_thirdAbilityButtton);
-            }
-
-            else if (i == 3)
-            {
-                _listButton.Add(_fourthAbilityButton);
-            }
-        }
-
-         Debug.Log(_listButton.Count);
-
-
-
+        
     }
 
 
@@ -85,7 +59,7 @@ public class CapacityMenu : MonoBehaviour
 
             _descriptionText.SetText(_listCapacitiesDescription[index]);
             _titleText.SetText(_listTitle[index]);
-           _capacityPicture.sprite = _listSprites[index];
+           //_capacityPicture.sprite = _listSprites[index];
 
         if (!_capacityPicture.isActiveAndEnabled)
         {

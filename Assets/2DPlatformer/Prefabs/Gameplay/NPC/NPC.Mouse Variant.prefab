@@ -98,7 +98,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7831371543387119036, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
       propertyPath: m_Name
-      value: NPC.Mouse
+      value: NPC.Mouse Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7831371543387119037, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
       propertyPath: m_RootOrder
@@ -182,6 +182,10 @@ PrefabInstance:
     - target: {fileID: 7831371543387119038, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
       propertyPath: _sentences.Array.data[4]
       value: I hope you will be able to stop these monsters..
+      objectReference: {fileID: 0}
+    - target: {fileID: 7831371544774301089, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7831371544774301119, guid: 7e00e7416cc9b59448bc111c04276d67, type: 3}
       propertyPath: m_LocalPosition.z

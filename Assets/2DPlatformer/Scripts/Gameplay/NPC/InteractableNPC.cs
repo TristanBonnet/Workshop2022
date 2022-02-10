@@ -26,12 +26,15 @@ public class InteractableNPC : MonoBehaviour, ICommandSender
 
     [SerializeField] private bool _giveUpgrade = false;
     [SerializeField] PickupCommand _pickUpCommand = null;
+    [SerializeField] List<GameObject> _listObjectToDestroy = null;
 
     GameObject ICommandSender.GetGameObject() => gameObject;
 
     public bool GiveUpgrade => _giveUpgrade;
 
     public PickupCommand PickupCommand => _pickUpCommand;
+
+    public List<GameObject> ListObjectToDestroy => _listObjectToDestroy;
 
     private void Start()
     {
@@ -79,6 +82,23 @@ public class InteractableNPC : MonoBehaviour, ICommandSender
     {
 
         _giveUpgrade = giveUpgrate;
+
+
+    }
+
+    public void DestoyGameObject()
+    {
+
+        for (int i = 0; i < _listObjectToDestroy.Count; i++)
+        {
+            if (_listObjectToDestroy[i].activeSelf)
+            {
+                Destroy(_listObjectToDestroy[i]);
+            }
+            
+
+        }
+
 
 
     }

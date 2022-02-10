@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40145dee3d95d094c80dfcdc27b21814, type: 3}
   m_Name: AddMaxLifeSlot
   m_EditorClassIdentifier: 
-  _destroyPickupOnApply: 0
+  _destroyPickupOnApply: 1
   _slotNumberToAdd: 1
