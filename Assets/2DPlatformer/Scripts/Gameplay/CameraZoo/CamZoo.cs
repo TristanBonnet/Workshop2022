@@ -14,6 +14,9 @@ public class CamZoo : MonoBehaviour
     [SerializeField] string _inputRightAxisVer = "RVer";
     [SerializeField] float _rotateSpeed = 30f;
 
+    [SerializeField] float _minRange = -45;
+    [SerializeField] float _maxRange = 45;
+
 
     private InputAction _inputAxisHorAction = null;
     private InputAction _inputAxisVerAction = null;
@@ -42,11 +45,13 @@ public class CamZoo : MonoBehaviour
     private void Update()
     {
 
-        transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, _camSpeed * Time.deltaTime * VerticalAxis, 0);
+        transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, 0, 0);
 
-        XRotation += Time.deltaTime * -RightVerticalAxis * _rotateSpeed;
 
-       _camera.transform.localEulerAngles =  new Vector3(XRotation, 0, 0);
+
+        XRotation = Mathf.Clamp(XRotation + (Time.deltaTime * -RightVerticalAxis * _rotateSpeed),_minRange,_maxRange);
+
+        _camera.transform.localEulerAngles =  new Vector3(XRotation, 0, 0);
         
 
     }

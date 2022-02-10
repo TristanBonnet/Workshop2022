@@ -28,6 +28,7 @@ public class ThrowableNewTest : MonoBehaviour
 
         if (_collidersList.Length > 0)
         {
+            Instantiate(_noise, transform.position, new Quaternion(0, 0, 0, 0));
             Destroy(gameObject);
         }
 
@@ -46,22 +47,23 @@ public class ThrowableNewTest : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject.layer);
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log(other.gameObject.layer);
 
-        if (other.gameObject.layer == 4)
-        {
-            Instantiate(_noise, transform.position, new Quaternion(0, 0, 0, 0));
-            Debug.Log("MAKE NOISE");
-            Destroy(gameObject);
-        }
+    //    if (other.gameObject.layer == _layer)
+    //    {
+    //        Debug.Log("MAKE NOISE");
+    //        Instantiate(_noise, transform.position, new Quaternion(0, 0, 0, 0));
+           
+    //        Destroy(gameObject);
+    //    }
 
-        else
-        {
-            Debug.Log("BAD LAYER");
-        }
-    }
+    //    else
+    //    {
+    //        Debug.Log("BAD LAYER");
+    //    }
+    //}
 
     public void SetNewGravity(float multiplier)
     {
