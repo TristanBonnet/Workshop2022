@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GSGD2;
 
 public class TeleportArea : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class TeleportArea : MonoBehaviour
     [SerializeField] private Transform _teleportTransform = null;
 
     [SerializeField] private GameObject _visibleInput = null;
+
+    [SerializeField] private string _verb = null;
 
 
 
@@ -31,8 +34,9 @@ public class TeleportArea : MonoBehaviour
 
             player.SetIsInArea(true);
             player.SetCurrentTPArea(this);
-            _visibleInput.SetActive(true);
-
+            //_visibleInput.SetActive(true);
+            LevelReferences.Instance.UIManager.SetInputDialogueActive(true);
+            LevelReferences.Instance.UIManager.SetTextAndSprite(_verb, LevelReferences.Instance.UIManager.ListSprite[0]);
         }
     }
 
@@ -48,7 +52,8 @@ public class TeleportArea : MonoBehaviour
 
             player.SetIsInArea(false);
             player.SetCurrentTPArea(null);
-            _visibleInput.SetActive(false);
+            //_visibleInput.SetActive(false);
+            LevelReferences.Instance.UIManager.SetInputDialogueActive(false);
         }
 
 

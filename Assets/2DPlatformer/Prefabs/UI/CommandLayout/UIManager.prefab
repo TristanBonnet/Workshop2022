@@ -901,7 +901,7 @@ MonoBehaviour:
   _listText:
   - Talk
   - Next
-  - Teleport
+  - Move to
 --- !u!1 &671326538629374241
 GameObject:
   m_ObjectHideFlags: 0
@@ -3907,6 +3907,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1edf33e86c5c73540aacf15516a844a3, type: 3}
   - {fileID: 21300000, guid: 57bf99038220d4b4ca4900c6e35a1b78, type: 3}
   _capacityPicture: {fileID: 0}
+  _listButton: []
 --- !u!1 &671326539344926491
 GameObject:
   m_ObjectHideFlags: 0
