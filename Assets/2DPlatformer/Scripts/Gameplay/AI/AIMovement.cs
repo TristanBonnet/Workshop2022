@@ -432,6 +432,11 @@ public class AIMovement : MonoBehaviour
             }
         }
 
+        else
+        {
+            Destroy(this.gameObject);
+        }
+
 
 
 

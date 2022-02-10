@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GSGD2.Player;
 using UnityEngine.InputSystem;
-using GSGD2;
+using GSGD2.Utilities;
+
 
 public class CamZoo : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class CamZoo : MonoBehaviour
     [SerializeField] string _inputAxisHor = "Hor";
     [SerializeField] string _inputAxisVer = "Ver";
     [SerializeField] string _inputRightAxisVer = "RVer";
+    [SerializeField] string _mainMenu = "M";
     [SerializeField] float _rotateSpeed = 30f;
+    [SerializeField] LoadSceneComponent _loadSceneComponent = null;
+
+    [SerializeField] float _minRange = -45;
+    [SerializeField] float _maxRange = 45;
 
 
     private InputAction _inputAxisHorAction = null;
     private InputAction _inputAxisVerAction = null;
     private InputAction _inputRightAxisVerAction = null;
+    private InputAction _mainMenuAction = null;
     private float XRotation = 0;
 
     [SerializeField] float _camSpeed = 1f;
@@ -35,6 +42,14 @@ public class CamZoo : MonoBehaviour
         _mapWrapper.TryFindAction(_inputAxisVer, out _inputAxisVerAction, true);
         _mapWrapper.TryFindAction(_inputRightAxisVer, out _inputRightAxisVerAction, true);
 
+        if (_mapWrapper.TryFindAction(_mainMenu, out _mainMenuAction, true) == true)
+        {
+            _mainMenuAction.performed -= _mainMenuBack;
+            _mainMenuAction.performed += _mainMenuBack;
+
+
+        }  
+
 
 
     }
@@ -42,12 +57,28 @@ public class CamZoo : MonoBehaviour
     private void Update()
     {
 
-        transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, _camSpeed * Time.deltaTime * VerticalAxis, 0);
+        transform.position += new Vector3(_camSpeed * Time.deltaTime * HorizontalAxis, 0, 0);
 
-        XRotation += Time.deltaTime * -RightVerticalAxis * _rotateSpeed;
 
-       _camera.transform.localEulerAngles =  new Vector3(XRotation, 0, 0);
+
+        XRotation = Mathf.Clamp(XRotation + (Time.deltaTime * -RightVerticalAxis * _rotateSpeed),_minRange,_maxRange);
+
+        _camera.transform.localEulerAngles =  new Vector3(XRotation, 0, 0);
+
         
+    }
+
+    private void _mainMenuBack(InputAction.CallbackContext obj)
+    {
+
+
+
+
+        _loadSceneComponent.LoadScene();
+
+
+
+
 
     }
 }
