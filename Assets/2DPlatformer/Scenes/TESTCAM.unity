@@ -7289,6 +7289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1792570308}
   - component: {fileID: 1792570307}
+  - component: {fileID: 1792570309}
   m_Layer: 0
   m_Name: CamActor
   m_TagString: Untagged
@@ -7313,7 +7314,9 @@ MonoBehaviour:
   _inputAxisHor: Hor
   _inputAxisVer: Ver
   _inputRightAxisVer: RVer
+  _mainMenu: M
   _rotateSpeed: 30
+  _loadSceneComponent: {fileID: 1792570309}
   _minRange: -45
   _maxRange: 45
   _camSpeed: 20
@@ -7332,6 +7335,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792570309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792570306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6614ab68f6f624744be80c04dfe7c040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loadAtOnEnable: 0
+  _sceneName: MainMenu
+  _mode: 0
 --- !u!1 &1804986383
 GameObject:
   m_ObjectHideFlags: 0

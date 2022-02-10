@@ -41,6 +41,14 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
+    - m_Name: M
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 296da3af-ed73-4438-be85-0bbc46611f0d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
     m_Bindings:
     - m_Name: 
       m_Id: 5865303e-3e76-4ef7-9ba4-6ee64c3d0be0
@@ -138,3 +146,11 @@ MonoBehaviour:
       m_Groups: 
       m_Action: RVer
       m_Flags: 8
+    - m_Name: 
+      m_Id: 0f9857ce-9abe-4976-b975-c106c7b6b613
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: M
+      m_Flags: 0

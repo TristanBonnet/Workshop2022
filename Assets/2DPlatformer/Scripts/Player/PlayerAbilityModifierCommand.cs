@@ -59,7 +59,7 @@
 
                         if (!LevelReferences.Instance.CapacityMenu.FirstAbilityButton.isActiveAndEnabled)
                         {
-							LevelReferences.Instance.CapacityMenu.SetElementsVisibility(0, true);
+							LevelReferences.Instance.CapacityMenu.SetElementsVisibility(2, true);
 						}
 						
 					}

@@ -27,7 +27,7 @@ namespace GSGD2.Gameplay
                     if (!LevelReferences.Instance.CapacityMenu.ThirdAbilityButton.isActiveAndEnabled)
                     {
 
-                        LevelReferences.Instance.CapacityMenu.SetElementsVisibility(2, true);
+                        LevelReferences.Instance.CapacityMenu.SetElementsVisibility(0, true);
 
                     }
                     return true;

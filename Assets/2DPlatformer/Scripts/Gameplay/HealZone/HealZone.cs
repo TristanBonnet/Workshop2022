@@ -25,6 +25,7 @@ public class HealZone : MonoBehaviour
 
                     int newMaxHealth = Mathf.RoundToInt(playerDamageable.MaxHealth);
                     playerDamageable.RestoreHealth(newMaxHealth);
+                    LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
                     
                    
                 }
@@ -33,6 +34,7 @@ public class HealZone : MonoBehaviour
                 else
                 {
                     playerDamageable.RestoreHealth(_lifeToAdd);
+                    LevelReferences.Instance.UIManager.PlayerHUD2.UpdateLife();
                 }
             }
 
