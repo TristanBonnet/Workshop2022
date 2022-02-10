@@ -3,7 +3,12 @@ guid: 0ed199e4788139c4b83b95deb4a7b5c5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lance_pierre
+    second: {fileID: 2100000, guid: c562bcaf582a55f4e971fbcbc27c192f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
